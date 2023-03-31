@@ -20,8 +20,10 @@ namespace RSGymAdministrative_DAL.Model
 
         #region Scalar Properties
         public int RequestID { get; set; }
+
         public int ClientID { get; set; }
-        public int PtID { get; set; }
+
+        public int PersonalTrainerID { get; set; }
 
         [Required]
         public DateTime DateAndTime { get; set; }

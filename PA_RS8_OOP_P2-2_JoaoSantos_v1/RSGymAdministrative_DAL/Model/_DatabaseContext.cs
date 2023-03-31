@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
+using System.Reflection;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RSGymAdministrative_DAL.Model
 {
-    internal class _DatabaseContext : DbContext
+    public class _DatabaseContext : DbContext
     {
-        public _DatabaseContext() : base("RSGymDataBase_JPS")
+        public _DatabaseContext() : base("RSGymDataBase_JPSv1")
         { 
         }
 
@@ -20,10 +21,10 @@ namespace RSGymAdministrative_DAL.Model
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
+        public DbSet<ZipCode> ZipCode { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<Client> Client { get; set; }
         public DbSet<PersonalTrainer> PersonalTrainer { get; set; }
         public DbSet<Request> Request { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<ZipCode> ZipCode { get; set; }
     }
 }

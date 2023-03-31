@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSGymAdministrative_Client.Structure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,9 @@ namespace RSGymAdministrative_Client
     {
         static void Main(string[] args)
         {
+            ProgramStructure.CreateInitialData();
+
+            Console.ReadKey();
         }
     }
 }

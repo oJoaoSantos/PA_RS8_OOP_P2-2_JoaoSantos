@@ -14,7 +14,7 @@ namespace RSGymAdministrative_DAL.Model
 
         [Required]
         [RegularExpression(@"^\d{4}-\d{3}$")]
-        public int Zip { get; set; }
+        public string Zip { get; set; }
 
         [Required]
         [MaxLength(50, ErrorMessage = "Número de caracteres máximo = 50.")]
@@ -22,8 +22,8 @@ namespace RSGymAdministrative_DAL.Model
         #endregion
 
         #region Navigation Properties
-        public ICollection<Client> Clients { get; set; }
-        public ICollection<PersonalTrainer> PersonalTrainers { get; set; }
+        public ICollection<Client> Client { get; set; }
+        public ICollection<PersonalTrainer> PersonalTrainer { get; set; }
 
         #endregion
     }
