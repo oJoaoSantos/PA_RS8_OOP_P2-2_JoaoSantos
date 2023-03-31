@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,11 @@ namespace RSGymAdministrative_DAL.Model
     public class Client
     {
         #region Scalar Properties
-        public int ClientID { get; set; }
         
-        public int ZipCodeID { get; set; }
+        [Key]
+        public int ClientID { get; set; }
+
+        //public int ZipCodeID { get; set; }
 
         [Required]
         [MaxLength(100, ErrorMessage = "Número de caracteres máximo = 100.")]
@@ -31,7 +34,6 @@ namespace RSGymAdministrative_DAL.Model
         public string ClientPhoneNumber { get; set; }
 
         [Required]
-        //ToDo JPS: Confirmar Regular expression mail Cliente
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")]
         public string ClientEmail { get; set; }
 
@@ -48,7 +50,8 @@ namespace RSGymAdministrative_DAL.Model
         #endregion
 
         #region Navigation Properties
-        public ZipCode ZipCode { get; set; }
+
+        //public ZipCode ZipCode { get; set; }
         public ICollection<Request> Request { get; set; }
 
         #endregion

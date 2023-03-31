@@ -18,6 +18,8 @@ namespace RSGymAdministrative_DAL.Model
         #endregion
 
         #region Scalar Properties
+        
+        [Key]
         public int UserID { get; set; }
 
         [Required]

@@ -21,7 +21,7 @@ namespace RSGymAdministrative_DAL.Model
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-        public DbSet<ZipCode> ZipCode { get; set; }
+        //public DbSet<ZipCode> ZipCode { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Client> Client { get; set; }
         public DbSet<PersonalTrainer> PersonalTrainer { get; set; }

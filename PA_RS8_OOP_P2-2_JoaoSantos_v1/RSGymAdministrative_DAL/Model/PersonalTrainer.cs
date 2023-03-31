@@ -10,9 +10,11 @@ namespace RSGymAdministrative_DAL.Model
     public class PersonalTrainer
     {
         #region Scalar Properties
+        
+        [Key]
         public int PersonalTrainerID { get; set; }
 
-        public int ZipCodeID { get; set; }
+        //public int ZipCodeID { get; set; }
 
         [Required]
         [MaxLength(100, ErrorMessage = "Número de caracteres máximo = 100.")]
@@ -27,7 +29,6 @@ namespace RSGymAdministrative_DAL.Model
         public string PtPhoneNumber { get; set; }
 
         [Required]
-        //ToDo JPS: Confirmar Regular expression mail PT
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")]
         public string PtEmail { get; set; }
 
@@ -37,7 +38,7 @@ namespace RSGymAdministrative_DAL.Model
         #endregion
 
         #region Navigation Properties
-        public ZipCode ZipCode { get; set; }
+        //public ZipCode ZipCode { get; set; }
         public ICollection<Request> Request { get; set; }
         #endregion
     }

@@ -9,19 +9,18 @@ using System.Threading.Tasks;
 
 namespace RSGymAdministrative_Client.Structure
 {
-    // ToDo JPS: Pensar se vale a pena criar uma calsse só de Creates para poder abrir a BD menos tempo
+    // ToDo JPS: Pensar se vale a pena criar uma calsse só de Creates para poder abrir a BD menos tempo ****
     public class ProgramStructure
     {
         public static void CreateInitialData()
         {
-            #region Create ZipCodes
-            ZipCodeRepository.CreateZipCode("1111-001", "Localiade 01, Teste");
-            ZipCodeRepository.CreateZipCode("2222-002", "Localiade 02, Teste");
-            ZipCodeRepository.CreateZipCode("3333-003", "Localiade 03, Teste");
-            ZipCodeRepository.CreateZipCode("4444-004", "Localiade 04, Teste");
-            ZipCodeRepository.CreateZipCode("5555-005", "Localiade 05, Teste");
-
-            #endregion
+            //#region Create ZipCodes
+            //ZipCodeRepository.CreateZipCode("1111-001", "Localiade 01, Teste");
+            //ZipCodeRepository.CreateZipCode("2222-002", "Localiade 02, Teste");
+            //ZipCodeRepository.CreateZipCode("3333-003", "Localiade 03, Teste");
+            //ZipCodeRepository.CreateZipCode("4444-004", "Localiade 04, Teste");
+            //ZipCodeRepository.CreateZipCode("5555-005", "Localiade 05, Teste");
+            //#endregion
 
             #region Create Users
             UserRepository.CreateUser(User.EnumPermissionType.Admin, "João Pedro Santos", "ADJS", "12345678");
@@ -45,6 +44,8 @@ namespace RSGymAdministrative_Client.Structure
             RequestRepository.CreateRequest(2, 1, new DateTime(2023, 05, 02, 11, 00, 0), Request.EnumSatus.Agendado);
             RequestRepository.CreateRequest(3, 2, new DateTime(2023, 05, 03, 12, 00, 0), Request.EnumSatus.Agendado);
             #endregion
+
+
         }
     }
 }

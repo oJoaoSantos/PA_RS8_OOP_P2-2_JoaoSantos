@@ -19,6 +19,8 @@ namespace RSGymAdministrative_DAL.Model
         #endregion
 
         #region Scalar Properties
+        
+        [Key]
         public int RequestID { get; set; }
 
         public int ClientID { get; set; }
