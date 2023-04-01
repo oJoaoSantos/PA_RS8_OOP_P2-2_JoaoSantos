@@ -60,6 +60,8 @@
     <Compile Include="Repository\RequestRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\ZipCodeRepository.cs" />
+    <Compile Include="Structure\InitializeData.cs" />
+    <Compile Include="Structure\Menus.cs" />
     <Compile Include="Structure\ProgramStructure.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +72,10 @@
     <ProjectReference Include="..\RSGymAdministrative_DAL\RSGymAdministrative_DAL.csproj">
       <Project>{7d8c83a8-4068-45db-8ea8-d505685491ce}</Project>
       <Name>RSGymAdministrative_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{41645c3e-7ddc-4500-84b4-00e9e99405f7}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
