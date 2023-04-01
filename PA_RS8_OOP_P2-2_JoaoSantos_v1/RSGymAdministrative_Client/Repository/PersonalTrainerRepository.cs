@@ -13,7 +13,7 @@ namespace RSGymAdministrative_Client.Repository
         {
             PersonalTrainer personalTrainer = new PersonalTrainer()
             {
-                //ZipCodeID = zipID,
+                ZipCodeID = zipID,
                 PtName = name,
                 PtVat = vat,
                 PtPhoneNumber = phone,

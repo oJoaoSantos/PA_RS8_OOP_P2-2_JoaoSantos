@@ -13,7 +13,7 @@ namespace RSGymAdministrative_Client.Repository
         {
             Client client = new Client()
             {
-                //ZipCodeID = zipID,
+                ZipCodeID = zipID,
                 ClientName = name,
                 BirthDate = birth,
                 ClientVat = vat,

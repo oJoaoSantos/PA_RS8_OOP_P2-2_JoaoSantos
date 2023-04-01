@@ -14,13 +14,13 @@ namespace RSGymAdministrative_Client.Structure
     {
         public static void CreateInitialData()
         {
-            //#region Create ZipCodes
-            //ZipCodeRepository.CreateZipCode("1111-001", "Localiade 01, Teste");
-            //ZipCodeRepository.CreateZipCode("2222-002", "Localiade 02, Teste");
-            //ZipCodeRepository.CreateZipCode("3333-003", "Localiade 03, Teste");
-            //ZipCodeRepository.CreateZipCode("4444-004", "Localiade 04, Teste");
-            //ZipCodeRepository.CreateZipCode("5555-005", "Localiade 05, Teste");
-            //#endregion
+            #region Create ZipCodes
+            ZipCodeRepository.CreateZipCode("1111-001", "Localiade 01, Teste");
+            ZipCodeRepository.CreateZipCode("2222-002", "Localiade 02, Teste");
+            ZipCodeRepository.CreateZipCode("3333-003", "Localiade 03, Teste");
+            ZipCodeRepository.CreateZipCode("4444-004", "Localiade 04, Teste");
+            ZipCodeRepository.CreateZipCode("5555-005", "Localiade 05, Teste");
+            #endregion
 
             #region Create Users
             UserRepository.CreateUser(User.EnumPermissionType.Admin, "João Pedro Santos", "ADJS", "12345678");

@@ -40,8 +40,6 @@ namespace RSGymAdministrative_DAL.Model
         #region Navigation Properties
         public Client Client { get; set; }
         public PersonalTrainer PersonalTrainer { get; set; }
-
-
         #endregion
     }
 }

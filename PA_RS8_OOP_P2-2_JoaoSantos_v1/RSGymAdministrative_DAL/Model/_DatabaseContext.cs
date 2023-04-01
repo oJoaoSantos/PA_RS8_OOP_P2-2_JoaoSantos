@@ -19,12 +19,25 @@ namespace RSGymAdministrative_DAL.Model
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<Request>()
+            .HasRequired(r => r.PersonalTrainer)
+            .WithMany()
+            .HasForeignKey(r => r.PersonalTrainerID)
+            .WillCascadeOnDelete(false);
+
+            // A segunda linha "modelBuilder.Entity<Request>()" está criando uma nova entidade no modelo de dados chamada "Request".
+            // A terceira linha ".HasRequired(r => r.PersonalTrainer)" está definindo uma restrição para a entidade "Request". Isso significa que cada registro na tabela de "Request" deve ter um relacionamento com um "PersonalTrainer".
+            // A quarta linha ".WithMany()" está especificando que cada registro em "PersonalTrainer" pode estar associado a vários registros em "Request". Isso é chamado de relacionamento de "muitos para um".
+            // A quinta linha ".HasForeignKey(r => r.PersonalTrainerID)" está especificando que a chave estrangeira do relacionamento é o campo "PersonalTrainerID" na tabela de "Request".
+            // A sexta linha ".WillCascadeOnDelete(false);" está especificando que, se um "PersonalTrainer" for excluído, os registros associados em "Request" não serão excluídos automaticamente. Isso é importante para manter a integridade dos dados em outras partes do aplicativo.
         }
 
-        //public DbSet<ZipCode> ZipCode { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<Client> Client { get; set; }
+        public DbSet<ZipCode> ZipCode { get; set; }
         public DbSet<PersonalTrainer> PersonalTrainer { get; set; }
+        public DbSet<Client> Client { get; set; }
         public DbSet<Request> Request { get; set; }
+        public DbSet<User> User { get; set; }
+
     }
 }

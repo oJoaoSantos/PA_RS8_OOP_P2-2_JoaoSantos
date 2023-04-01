@@ -41,7 +41,6 @@ namespace RSGymAdministrative_DAL.Model
         #endregion
 
         #region Navigation Properties
-        // ToDo JPS: Verificar se necessita de ligar a alguma tabela
         #endregion
     }
 }

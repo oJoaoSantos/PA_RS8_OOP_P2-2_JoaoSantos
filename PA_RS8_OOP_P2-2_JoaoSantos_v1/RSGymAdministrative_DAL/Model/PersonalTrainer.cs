@@ -14,7 +14,7 @@ namespace RSGymAdministrative_DAL.Model
         [Key]
         public int PersonalTrainerID { get; set; }
 
-        //public int ZipCodeID { get; set; }
+        public int ZipCodeID { get; set; }
 
         [Required]
         [MaxLength(100, ErrorMessage = "Número de caracteres máximo = 100.")]
@@ -38,7 +38,8 @@ namespace RSGymAdministrative_DAL.Model
         #endregion
 
         #region Navigation Properties
-        //public ZipCode ZipCode { get; set; }
+        public ZipCode ZipCode { get; set; }
+        public ICollection<Client> Client { get; set; }
         public ICollection<Request> Request { get; set; }
         #endregion
     }

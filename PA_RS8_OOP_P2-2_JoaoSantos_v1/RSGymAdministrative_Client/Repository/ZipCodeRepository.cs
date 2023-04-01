@@ -11,17 +11,17 @@ namespace RSGymAdministrative_Client.Repository
     {
         public static void CreateZipCode(string zip, string city)
         {
-            //ZipCode zipCode = new ZipCode()
-            //{
-            //    Zip = zip,
-            //    City = city
-            //};
+            ZipCode zipCode = new ZipCode()
+            {
+                Zip = zip,
+                City = city
+            };
 
-            //using (var context = new _DatabaseContext())
-            //{
-            //    context.ZipCode.Add(zipCode);
-            //    context.SaveChanges();
-            //}
+            using (var context = new _DatabaseContext())
+            {
+                context.ZipCode.Add(zipCode);
+                context.SaveChanges();
+            }
         }
     }
 }

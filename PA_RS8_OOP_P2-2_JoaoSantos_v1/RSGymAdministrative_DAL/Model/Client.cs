@@ -12,11 +12,11 @@ namespace RSGymAdministrative_DAL.Model
     public class Client
     {
         #region Scalar Properties
-        
+
         [Key]
         public int ClientID { get; set; }
 
-        //public int ZipCodeID { get; set; }
+        public int ZipCodeID { get; set; }
 
         [Required]
         [MaxLength(100, ErrorMessage = "Número de caracteres máximo = 100.")]
@@ -51,7 +51,7 @@ namespace RSGymAdministrative_DAL.Model
 
         #region Navigation Properties
 
-        //public ZipCode ZipCode { get; set; }
+        public ZipCode ZipCode { get; set; }
         public ICollection<Request> Request { get; set; }
 
         #endregion
