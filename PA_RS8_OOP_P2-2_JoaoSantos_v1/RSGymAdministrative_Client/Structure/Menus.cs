@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,42 +15,50 @@ namespace RSGymAdministrative_Client.Structure
     public class Menus
     {
         #region Initial Menu
-        public static void InitialMenu()
+        public static string InitialMenu()
         {
-            Dictionary<int, string> menu1 = Utilities.Menu01_Initial.Menu1Create();
+            Dictionary<string, string> menu1 = Utilities.Menu01_Initial.Menu1Create();
             string validation;
-
+            
             do
             {
                 Utilities.Basics.ListMenu(menu1, "Menu Inicial");
+
                 Console.Write("\nOpção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu1, readed);
-                if (validation != "ok")
+
+                switch (validation)
                 {
-                    Console.WriteLine(validation);
+                    case "1":
+                        Console.Clear();
+                        break;
+                    case "0":
+                        Console.Clear();
+                        //ToDo JPS: Mensagem final
+                        break;
+                    default:
+                        Console.WriteLine(validation);
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
                 }
-                Console.ReadKey();
-                Console.Clear();
-            } while (validation != "ok");
+            } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");            
+            return validation;
         }
         #endregion
 
         #region LogIn Menu
-        public static User.EnumPermissionType LogIn()
+        public static List<User.EnumPermissionType> LogIn()
         {
             Utilities.Basics.Title01("RSGym Administration :: Menu de Credenciais");
-
+                
             Console.Write("Código de Utilizador: ");
             string codeReaded = Console.ReadLine();
             Console.Write("Password: ");
             string passReaded = Console.ReadLine();
 
-            //ToDo JPS: Validation
-            User.EnumPermissionType userType = User.EnumPermissionType.Admin; // Default = Colab, mas é para tirar.
-
-            Console.ReadKey();
-
+            List<User.EnumPermissionType> userType = Utilities.Validations.ValidateLogIn(codeReaded, passReaded);            
             return userType;
         }
         #endregion

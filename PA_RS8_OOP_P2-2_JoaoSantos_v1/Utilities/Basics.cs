@@ -40,11 +40,11 @@ namespace Utilities
             Console.Clear();
         }
 
-        public static void ListMenu(Dictionary<int, string> menu, string menuTitle)
+        public static void ListMenu(Dictionary<string, string> menu, string menuTitle)
         {
             Utilities.Basics.Title01($"{appName} :: {menuTitle}");
 
-            foreach (KeyValuePair<int, string> item in menu)
+            foreach (KeyValuePair<string, string> item in menu)
             {
                 Console.WriteLine($"{item.Key}. > {item.Value}");
             }

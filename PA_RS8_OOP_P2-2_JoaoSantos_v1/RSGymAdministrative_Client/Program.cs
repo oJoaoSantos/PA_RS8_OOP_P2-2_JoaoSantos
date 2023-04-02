@@ -18,12 +18,8 @@ namespace RSGymAdministrative_Client
 
             Utilities.Basics.SetUniCodeConsole();
 
-            Menus.InitialMenu();
+            ProgramStructure.RunStructure();
             
-            User.EnumPermissionType usertype = Menus.LogIn();
-
-            ProgramStructure.RunStructure(usertype);
-
             Console.ReadKey();
         }
     }
