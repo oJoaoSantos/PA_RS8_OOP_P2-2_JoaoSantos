@@ -22,6 +22,7 @@ namespace RSGymAdministrative_Client.Structure
             
             do
             {
+                Console.Clear();
                 Utilities.Basics.ListMenu(menu1, "Menu Inicial");
 
                 Console.Write("\nOpção: ");
@@ -48,10 +49,10 @@ namespace RSGymAdministrative_Client.Structure
         }
         #endregion
 
-        //ToDo JPS: Corrigir o switch (desnecessário)
         #region LogIn Menu
         public static string LogIn()
         {
+            Console.Clear();
             Utilities.Basics.Title01("RSGym Administration :: Menu de Credenciais");
                 
             Console.Write("Código de Utilizador: ");
@@ -66,8 +67,8 @@ namespace RSGymAdministrative_Client.Structure
         }
         #endregion
 
-        //ToDo JPS: Corrigir o switch (desnecessário)
         #region General Menu
+
         #region Admin
         public static string GeneralMenuAdmin()
         {
@@ -76,36 +77,37 @@ namespace RSGymAdministrative_Client.Structure
 
             do
             {
+                Console.Clear();
                 Utilities.Basics.ListMenu(menu2Admin, "Menu de Administração - Admin");
 
                 Console.Write("\nOpção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu2Admin, readed);
 
-                switch (validation)
-                {
-                    case "1":
-                        Console.Clear(); // Colaboradores
-                        break;
-                    case "2":
-                        Console.Clear(); // Clientes
-                        break;
-                    case "3":
-                        Console.Clear(); // Personal Trainers
-                        break;
-                    case "4":
-                        Console.Clear(); // Pedidos
-                        break;
-                    case "0":
-                        // ToDo JPS: Mensagem Final de Final de Sessão, Admin
-                        Console.Clear(); // Voltar
-                        break;
-                    default:
-                        Console.WriteLine(validation);
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
-                }
+                //switch (validation)
+                //{
+                //    case "1":
+                //        Console.Clear(); // Colaboradores
+                //        break;
+                //    case "2":
+                //        Console.Clear(); // Clientes
+                //        break;
+                //    case "3":
+                //        Console.Clear(); // Personal Trainers
+                //        break;
+                //    case "4":
+                //        Console.Clear(); // Pedidos
+                //        break;
+                //    case "0":
+                //        // ToDo JPS: Mensagem Final de Final de Sessão, Admin
+                //        Console.Clear(); // Voltar
+                //        break;
+                //    default:
+                //        Console.WriteLine(validation);
+                //        Console.ReadKey();
+                //        Console.Clear();
+                //        break;
+                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }
@@ -119,37 +121,39 @@ namespace RSGymAdministrative_Client.Structure
 
             do
             {
+                Console.Clear();
                 Utilities.Basics.ListMenu(menu2Colab, "Menu de Administração - Colab");
 
                 Console.Write("\nOpção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu2Colab, readed);
 
-                switch (validation)
-                {
-                    case "1":
-                        Console.Clear(); // Clientes
-                        break;
-                    case "2":
-                        Console.Clear(); // Personal Trainers
-                        break;
-                    case "3":
-                        Console.Clear(); // Pedidos
-                        break;
-                    case "0":
-                        // ToDo JPS: Mensagem Final de Final de Sessão, Colab
-                        Console.Clear(); // Voltar
-                        break;
-                    default:
-                        Console.WriteLine(validation);
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
-                }
+                //switch (validation)
+                //{
+                //    case "1":
+                //        Console.Clear(); // Clientes
+                //        break;
+                //    case "2":
+                //        Console.Clear(); // Personal Trainers
+                //        break;
+                //    case "3":
+                //        Console.Clear(); // Pedidos
+                //        break;
+                //    case "0":
+                //        // ToDo JPS: Mensagem Final de Final de Sessão, Colab
+                //        Console.Clear(); // Voltar
+                //        break;
+                //    default:
+                //        Console.WriteLine(validation);
+                //        Console.ReadKey();
+                //        Console.Clear();
+                //        break;
+                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }
         #endregion
+
         #endregion
 
         #region User Administration Menu
@@ -160,32 +164,150 @@ namespace RSGymAdministrative_Client.Structure
 
             do
             {
-                Utilities.Basics.ListMenu(menu3, "Menu de Utilizadores");
+                Console.Clear();
+                Utilities.Basics.ListMenu(menu3, "Menu de Colaboradores");
 
                 Console.Write("\nOpção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu3, readed);
 
-                switch (validation)
-                {
-                    case "1":
-                        Console.Clear(); // Criar
-                        break;
-                    case "2":
-                        Console.Clear(); // Alterar
-                        break;
-                    case "3":
-                        Console.Clear(); // Consultar
-                        break;
-                    case "0":
-                        Console.Clear(); // Voltar
-                        break;
-                    default:
-                        Console.WriteLine(validation);
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
-                }
+                //switch (validation)
+                //{
+                //    case "1":
+                //        Console.Clear(); // Criar
+                //        break;
+                //    case "2":
+                //        Console.Clear(); // Alterar
+                //        break;
+                //    case "3":
+                //        Console.Clear(); // Consultar
+                //        break;
+                //    case "0":
+                //        Console.Clear(); // Voltar
+                //        break;
+                //    default:
+                //        Console.WriteLine(validation);
+                //        Console.ReadKey();
+                //        Console.Clear();
+                //        break;
+                //}
+            } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
+            return validation;
+        }
+        #endregion
+
+        #region Client Administration Menu
+        public static string ClientAdministrationMenu()
+        {
+            Dictionary<string, string> menu4 = Utilities.Menu04_ClientAdministration.Menu4Create();
+            string validation;
+
+            do
+            {
+                Console.Clear();
+                Utilities.Basics.ListMenu(menu4, "Menu de Clientes");
+
+                Console.Write("\nOpção: ");
+                string readed = Console.ReadLine();
+                validation = Utilities.Validations.MenuOptionReaded(menu4, readed);
+
+                //switch (validation)
+                //{
+                //    case "1":
+                //        Console.Clear(); // Criar
+                //        break;
+                //    case "2":
+                //        Console.Clear(); // Alterar
+                //        break;
+                //    case "3":
+                //        Console.Clear(); // Consultar
+                //        break;
+                //    case "4":
+                //        Console.Clear(); // Ativar/Desativar
+                //        break;
+                //    case "0":
+                //        Console.Clear(); // Voltar
+                //        break;
+                //    default:
+                //        Console.WriteLine(validation);
+                //        Console.ReadKey();
+                //        Console.Clear();
+                //        break;
+                //}
+            } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
+            return validation;
+        }
+        #endregion
+
+        #region PT Administration Menu
+        public static string PtAdministrationMenu()
+        {
+            Dictionary<string, string> menu5_1 = Utilities.Menu05_PtOrRequestAdministration.Menu5Create();
+            string validation;
+
+            do
+            {
+                Console.Clear();
+                Utilities.Basics.ListMenu(menu5_1, "Menu de Personal Trainers");
+
+                Console.Write("\nOpção: ");
+                string readed = Console.ReadLine();
+                validation = Utilities.Validations.MenuOptionReaded(menu5_1, readed);
+
+                //switch (validation)
+                //{
+                //    case "1":
+                //        Console.Clear(); // Criar
+                //        break;
+                //    case "2":
+                //        Console.Clear(); // Listar
+                //        break;
+                //    case "0":
+                //        Console.Clear(); // Voltar
+                //        break;
+                //    default:
+                //        Console.WriteLine(validation);
+                //        Console.ReadKey();
+                //        Console.Clear();
+                //        break;
+                //}
+            } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
+            return validation;
+        }
+        #endregion
+
+        #region Request Administration Menu
+        public static string RequestAdministrationMenu()
+        {
+            Dictionary<string, string> menu5_2 = Utilities.Menu05_PtOrRequestAdministration.Menu5Create();
+            string validation;
+
+            do
+            {
+                Console.Clear();
+                Utilities.Basics.ListMenu(menu5_2, "Menu de Pedidos");
+
+                Console.Write("\nOpção: ");
+                string readed = Console.ReadLine();
+                validation = Utilities.Validations.MenuOptionReaded(menu5_2, readed);
+
+                //switch (validation)
+                //{
+                //    case "1":
+                //        Console.Clear(); // Criar
+                //        break;
+                //    case "2":
+                //        Console.Clear(); // Listar
+                //        break;
+                //    case "0":
+                //        Console.Clear(); // Voltar
+                //        break;
+                //    default:
+                //        Console.WriteLine(validation);
+                //        Console.ReadKey();
+                //        Console.Clear();
+                //        break;
+                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }

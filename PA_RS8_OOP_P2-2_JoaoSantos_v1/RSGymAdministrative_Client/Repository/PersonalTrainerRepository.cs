@@ -9,6 +9,7 @@ namespace RSGymAdministrative_Client.Repository
 {
     static class PersonalTrainerRepository
     {
+        #region Create
         public static void CreatePersonalTrainer(int zipID, string name, string vat, string phone, string mail, string adress)
         {
             PersonalTrainer personalTrainer = new PersonalTrainer()
@@ -27,5 +28,11 @@ namespace RSGymAdministrative_Client.Repository
                 context.SaveChanges();
             }
         }
+        #endregion
+
+        #region Read
+
+        #endregion
+
     }
 }

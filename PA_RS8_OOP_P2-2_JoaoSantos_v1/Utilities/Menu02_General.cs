@@ -14,7 +14,7 @@ namespace Utilities
             {
                 { "1" , "Colaboradores" },
                 { "2" , "Clientes" },
-                { "3" , "Peersonal Trainers" },
+                { "3" , "Personal Trainers" },
                 { "4" , "Pedidos" },
                 { "0" , "Log Out" }
             };
@@ -26,7 +26,7 @@ namespace Utilities
             Dictionary<string, string> menu2Colab = new Dictionary<string, string>()
             {
                 { "1" , "Clientes" },
-                { "2" , "Peersonal Trainers" },
+                { "2" , "Personal Trainers" },
                 { "3" , "Pedidos" },
                 { "0" , "Log Out" }
             };

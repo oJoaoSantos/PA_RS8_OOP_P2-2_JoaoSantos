@@ -9,6 +9,7 @@ namespace RSGymAdministrative_Client.Repository
 {
     static class ClientRepository
     {
+        #region Create
         public static void CreateClient(int zipID, string name, DateTime birth, string vat, string phone, string mail, string adress, string obs = "", bool active = true)
         {
             Client client = new Client()
@@ -30,5 +31,19 @@ namespace RSGymAdministrative_Client.Repository
                 context.SaveChanges();
             }
         }
+        #endregion
+
+        #region Read
+
+        #endregion
+
+        #region Update
+
+        #endregion
+
+        #region ActiveNow Modification
+
+        #endregion
+
     }
 }

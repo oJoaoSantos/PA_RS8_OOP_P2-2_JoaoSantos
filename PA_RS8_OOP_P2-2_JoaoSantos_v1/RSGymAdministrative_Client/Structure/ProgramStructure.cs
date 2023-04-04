@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace RSGymAdministrative_Client.Structure
 {
+    //ToDo JPS: Criar uma utility com o Wrong Choice
     public class ProgramStructure
     {
         public static void RunStructure()
@@ -28,34 +29,246 @@ namespace RSGymAdministrative_Client.Structure
                     if (userType == "Admin")
                     {
                         string choiceMenu02Admin = "";
-                        while (choiceMenu02Admin != "0")
+                        do
                         {
-                            Console.Clear();
                             choiceMenu02Admin = Menus.GeneralMenuAdmin();
-                            if (choiceMenu02Admin != "0")
+                            switch (choiceMenu02Admin)
                             {
-                                #region Menu03 User Administration
-                                string choiceMenu03UserAdministration = "";
-                                while (choiceMenu03UserAdministration != "0")
-                                {
-                                    choiceMenu03UserAdministration = Menus.UserAdministrationMenu();
-                                };
-                                #endregion
-                                #region Menu04 Client Administration
+                                case "1":
 
-                                #endregion
+                                    #region Menu03 User Administration
+                                    string choiceMenu03UserAdministration = "";
+                                    do
+                                    {
+                                        choiceMenu03UserAdministration = Menus.UserAdministrationMenu();
+                                        switch (choiceMenu03UserAdministration)
+                                        {
+                                            case "1":
 
-                                #region Menu05 PT Administration
+                                                #region Create
+                                                Console.Clear(); // Criar
+                                                #endregion
 
-                                #endregion
+                                                break;
 
-                                #region Menu06 Request Administration
+                                            case "2":
 
-                                #endregion
+                                                #region Update
+                                                Console.Clear(); // Alterar
+                                                #endregion
+
+                                                break;
+
+                                            case "3":
+
+                                                #region Read
+                                                Console.Clear(); // Consultar
+                                                #endregion
+
+                                                break;
+
+                                            case "0":
+
+                                                #region Back
+                                                Console.Clear(); // Voltar
+                                                #endregion
+
+                                                break;
+
+                                            default:
+
+                                                #region Wrong Choice
+                                                Console.WriteLine(choiceMenu03UserAdministration);
+                                                Console.ReadKey();
+                                                Console.Clear();
+                                                #endregion
+
+                                                break;
+                                        }
+                                    } while (choiceMenu03UserAdministration != "0");
+                                    #endregion
+
+                                    break;
+
+                                case "2":
+
+                                    #region Menu04 Client Administration
+                                    string choiceMenu04ClientAdministration = "";
+                                    do
+                                    {
+                                        choiceMenu04ClientAdministration = Menus.ClientAdministrationMenu();
+                                        switch (choiceMenu04ClientAdministration)
+                                        {
+                                            case "1":
+
+                                                #region Create
+                                                Console.Clear(); // Criar
+                                                #endregion
+
+                                                break;
+
+                                            case "2":
+
+                                                #region Update
+                                                Console.Clear(); // Alterar
+                                                #endregion
+
+                                                break;
+                                            case "3":
+
+                                                #region Read
+                                                Console.Clear(); // Consultar
+                                                #endregion
+
+                                                break;
+
+                                            case "4":
+
+                                                #region Activate/Desactivate
+                                                Console.Clear(); // Ativar/Desativar
+                                                #endregion
+
+                                                break;
+
+                                            case "0":
+
+                                                #region Back
+                                                Console.Clear(); // Voltar
+                                                #endregion
+
+                                                break;
+
+                                            default:
+
+                                                #region Wrong Choice
+                                                Console.WriteLine(choiceMenu04ClientAdministration);
+                                                Console.ReadKey();
+                                                Console.Clear();
+                                                #endregion
+
+                                                break;
+                                        }
+                                    } while (choiceMenu04ClientAdministration != "0");
+                                    #endregion
+
+                                    break;
+
+                                case "3":
+
+                                    #region Menu05 PT Administration
+                                    string choiceMenu05_1PtAdministration = "";
+                                    do
+                                    {
+                                        choiceMenu05_1PtAdministration = Menus.PtAdministrationMenu();
+                                        switch (choiceMenu05_1PtAdministration)
+                                        {
+                                            case "1":
+
+                                                #region Create
+                                                Console.Clear(); // Criar
+                                                #endregion
+
+                                                break;
+
+                                            case "2":
+
+                                                #region Read
+                                                Console.Clear(); // Listar
+                                                #endregion
+
+                                                break;
+
+                                            case "0":
+
+                                                #region Back
+                                                Console.Clear(); // Voltar
+                                                #endregion
+
+                                                break;
+
+                                            default:
+
+                                                #region WrongChoice
+                                                Console.WriteLine(choiceMenu05_1PtAdministration);
+                                                Console.ReadKey();
+                                                Console.Clear();
+                                                #endregion
+
+                                                break;
+                                        }
+                                    } while (choiceMenu05_1PtAdministration != "0");
+                                    #endregion
+
+                                    break;
+
+                                case "4":
+
+                                    #region Menu06 Request Administration
+                                    string choiceMenu05_2RequestAdministration = "";
+                                    do
+                                    {
+                                        choiceMenu05_2RequestAdministration = Menus.RequestAdministrationMenu();
+                                        switch (choiceMenu05_2RequestAdministration)
+                                        {
+                                            case "1":
+
+                                                #region Create
+                                                Console.Clear(); // Criar
+                                                #endregion
+
+                                                break;
+
+                                            case "2":
+
+                                                #region Read
+                                                Console.Clear(); // Listar
+                                                #endregion
+
+                                                break;
+
+                                            case "0":
+
+                                                #region Back
+                                                Console.Clear(); // Voltar
+                                                #endregion
+
+                                                break;
+
+                                            default:
+
+                                                #region WrongChoice
+                                                Console.WriteLine(choiceMenu05_2RequestAdministration);
+                                                Console.ReadKey();
+                                                Console.Clear();
+                                                #endregion
+
+                                                break;
+                                        }
+                                    } while (choiceMenu05_2RequestAdministration != "0");
+                                    #endregion
+
+                                    break;
+
+                                case "0":
+
+                                    #region Back
+                                    // ToDo JPS: Mensagem Final de Final de Sessão, Admin
+                                    Console.Clear(); // Voltar
+                                    #endregion
+
+                                    break;
+
+                                default:
+
+                                    #region Wrong Choice
+                                    Console.WriteLine(choiceMenu02Admin);
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                    #endregion
+
+                                    break;
                             }
-                        };
-
-
+                        } while (choiceMenu02Admin != "0");
                     }
                     #endregion
 
@@ -65,35 +278,201 @@ namespace RSGymAdministrative_Client.Structure
                         string choiceMenu02Colab = "";
                         do
                         {
-                            Console.Clear();
                             choiceMenu02Colab = Menus.GeneralMenuColab();
+                            switch (choiceMenu02Colab)
+                            {
+                                case "1":
 
-                            #region Menu04 Client Administration
+                                    #region Menu04 Client Administration
+                                    string choiceMenu04ClientAdministration = "";
+                                    do
+                                    {
+                                        choiceMenu04ClientAdministration = Menus.ClientAdministrationMenu();
+                                        switch (choiceMenu04ClientAdministration)
+                                        {
+                                            case "1":
 
-                            #endregion
+                                                #region Create
+                                                Console.Clear(); // Criar
+                                                #endregion
 
-                            #region Menu05 PT Administration
+                                                break;
 
-                            #endregion
+                                            case "2":
 
-                            #region Menu06 Request Administration
+                                                #region Update
+                                                Console.Clear(); // Alterar
+                                                #endregion
 
-                            #endregion
+                                                break;
+                                            case "3":
+
+                                                #region Read
+                                                Console.Clear(); // Consultar
+                                                #endregion
+
+                                                break;
+
+                                            case "4":
+
+                                                #region Activate/Desactivate
+                                                Console.Clear(); // Ativar/Desativar
+                                                #endregion
+
+                                                break;
+
+                                            case "0":
+
+                                                #region Back
+                                                Console.Clear(); // Voltar
+                                                #endregion
+
+                                                break;
+
+                                            default:
+
+                                                #region Wrong Choice
+                                                Console.WriteLine(choiceMenu04ClientAdministration);
+                                                Console.ReadKey();
+                                                Console.Clear();
+                                                #endregion
+
+                                                break;
+                                        }
+                                    } while (choiceMenu04ClientAdministration != "0");
+                                    #endregion
+
+                                    break;
+
+                                case "2":
+
+                                    #region Menu05 PT Administration
+                                    string choiceMenu05_1PtAdministration = "";
+                                    do
+                                    {
+                                        choiceMenu05_1PtAdministration = Menus.PtAdministrationMenu();
+                                        switch (choiceMenu05_1PtAdministration)
+                                        {
+                                            case "1":
+
+                                                #region Create
+                                                Console.Clear(); // Criar
+                                                #endregion
+
+                                                break;
+
+                                            case "2":
+
+                                                #region Read
+                                                Console.Clear(); // Listar
+                                                #endregion
+
+                                                break;
+
+                                            case "0":
+
+                                                #region Back
+                                                Console.Clear(); // Voltar
+                                                #endregion
+
+                                                break;
+
+                                            default:
+
+                                                #region WrongChoice
+                                                Console.WriteLine(choiceMenu05_1PtAdministration);
+                                                Console.ReadKey();
+                                                Console.Clear();
+                                                #endregion
+
+                                                break;
+                                        }
+                                    } while (choiceMenu05_1PtAdministration != "0");
+                                    #endregion
+
+                                    break;
+
+                                case "3":
+
+                                    #region Menu06 Request Administration
+                                    string choiceMenu05_2RequestAdministration = "";
+                                    do
+                                    {
+                                        choiceMenu05_2RequestAdministration = Menus.RequestAdministrationMenu();
+                                        switch (choiceMenu05_2RequestAdministration)
+                                        {
+                                            case "1":
+
+                                                #region Create
+                                                Console.Clear(); // Criar
+                                                #endregion
+
+                                                break;
+
+                                            case "2":
+
+                                                #region Read
+                                                Console.Clear(); // Listar
+                                                #endregion
+
+                                                break;
+
+                                            case "0":
+
+                                                #region Back
+                                                Console.Clear(); // Voltar
+                                                #endregion
+
+                                                break;
+
+                                            default:
+
+                                                #region WrongChoice
+                                                Console.WriteLine(choiceMenu05_2RequestAdministration);
+                                                Console.ReadKey();
+                                                Console.Clear();
+                                                #endregion
+
+                                                break;
+                                        }
+                                    } while (choiceMenu05_2RequestAdministration != "0");
+                                    #endregion
+
+                                    break;
+
+                                case "0":
+
+                                    #region Back
+                                    // ToDo JPS: Mensagem Final de Final de Sessão, Admin
+                                    Console.Clear(); // Voltar
+                                    #endregion
+
+                                    break;
+
+                                default:
+
+                                    #region Wrong Choice
+                                    Console.WriteLine(choiceMenu02Colab);
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                    #endregion
+
+                                    break;
+                            }
                         } while (choiceMenu02Colab != "0");
-
                     }
                     #endregion
+
+                    #region Wrong Credentials
                     else
                     {
                         Console.WriteLine($"{userType}! Pressiona qualquer tecla para voltares ao menu incial.");
                         Console.ReadKey();
                         Console.Clear();
                     }
-
+                    #endregion
                 }
-
             } while (choiceMenu01 != "0");
-            
         }
     }
 }

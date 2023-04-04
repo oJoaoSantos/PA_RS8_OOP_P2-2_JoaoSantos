@@ -9,6 +9,7 @@ namespace RSGymAdministrative_Client.Repository
 {
     static class RequestRepository
     {
+        #region Create
         public static void CreateRequest(int client, int pt, DateTime dateTime, Request.EnumSatus status, string obs = "")
         {
             Request request = new Request()
@@ -26,5 +27,10 @@ namespace RSGymAdministrative_Client.Repository
                 context.SaveChanges();
             }
         }
+        #endregion
+
+        #region Read
+
+        #endregion
     }
 }

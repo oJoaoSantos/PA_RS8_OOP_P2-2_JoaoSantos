@@ -31,5 +31,13 @@ namespace RSGymAdministrative_Client.Repository
             }
         }
         #endregion
+
+        #region Read
+
+        #endregion
+
+        #region Update
+
+        #endregion
     }
 }

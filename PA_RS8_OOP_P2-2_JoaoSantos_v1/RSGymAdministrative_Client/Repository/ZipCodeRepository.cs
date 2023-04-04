@@ -9,6 +9,7 @@ namespace RSGymAdministrative_Client.Repository
 {
     static class ZipCodeRepository
     {
+        #region Create
         public static void CreateZipCode(string zip, string city)
         {
             ZipCode zipCode = new ZipCode()
@@ -23,5 +24,7 @@ namespace RSGymAdministrative_Client.Repository
                 context.SaveChanges();
             }
         }
+        #endregion
+
     }
 }
