@@ -16,7 +16,7 @@ namespace Utilities
                 { "2" , "Clientes" },
                 { "3" , "Peersonal Trainers" },
                 { "4" , "Pedidos" },
-                { "0" , "Voltar ao Menu Inicial" }
+                { "0" , "Log Out" }
             };
             return menu2Admin;
         }
@@ -28,7 +28,7 @@ namespace Utilities
                 { "1" , "Clientes" },
                 { "2" , "Peersonal Trainers" },
                 { "3" , "Pedidos" },
-                { "0" , "Voltar ao Menu Inicial" }
+                { "0" , "Log Out" }
             };
             return menu2Colab;
         }

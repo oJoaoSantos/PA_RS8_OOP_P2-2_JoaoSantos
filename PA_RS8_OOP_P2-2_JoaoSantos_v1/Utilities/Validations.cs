@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,13 +22,24 @@ namespace Utilities
             };
         }
 
-        public static List<User.EnumPermissionType> ValidateLogIn(string code, string passWord)
+        public static string ValidateLogIn(string code, string passWord)
         {
             using (var db = new _DatabaseContext())
             {
                 var queryUser = db.User.Select(u => u).Where(u=> u.Code == code.ToUpper() && u.PassWord == passWord);
                 queryUser.ToList().ForEach(u => Console.WriteLine($"\nBem vindo {u.UserName} - Utilizador do Tipo {u.PermissionType}"));
-                return queryUser.Select(u => u.PermissionType).ToList();
+                if (queryUser.Select(u => u.PermissionType).ToList().Contains(User.EnumPermissionType.Colab))
+                {
+                    return "Colab";
+                }
+                else if (queryUser.Select(u => u.PermissionType).ToList().Contains(User.EnumPermissionType.Admin))
+                {
+                    return "Admin";
+                }
+                else 
+                {
+                    return "Credenciais Inválidas";
+                }
             }
         }
     }
