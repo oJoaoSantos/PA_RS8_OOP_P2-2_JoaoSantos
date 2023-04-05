@@ -17,6 +17,11 @@ namespace RSGymAdministrative_DAL.Model
         public int ZipCodeID { get; set; }
 
         [Required]
+        [MinLength(4, ErrorMessage = "Número de caracteres = 4.")]
+        [MaxLength(4, ErrorMessage = "Número de caracteres = 4.")]
+        public string PtCode { get; set; }
+
+        [Required]
         [MaxLength(100, ErrorMessage = "Número de caracteres máximo = 100.")]
         public string PtName { get; set; }
 

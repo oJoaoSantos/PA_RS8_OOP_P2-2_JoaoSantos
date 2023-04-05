@@ -34,8 +34,8 @@ namespace RSGymAdministrative_Client.Structure
             #endregion
 
             #region CreatePT's
-            PersonalTrainerRepository.CreatePersonalTrainer(4, "Personal Trainner 01", "123789456", "965498712", "pt01@rsgym.pt", "Rua d, N4, Teste");
-            PersonalTrainerRepository.CreatePersonalTrainer(5, "Personal Trainner 02", "789456123", "914567891", "pt02@rsgym.pt", "Rua e, N5, Teste");
+            PersonalTrainerRepository.CreatePersonalTrainer(4, "PT01", "Personal Trainner 01", "123789456", "965498712", "pt01@rsgym.pt", "Rua d, N4, Teste");
+            PersonalTrainerRepository.CreatePersonalTrainer(5, "PT02", "Personal Trainner 02", "789456123", "914567891", "pt02@rsgym.pt", "Rua e, N5, Teste");
             #endregion
 
             #region CreateRequests

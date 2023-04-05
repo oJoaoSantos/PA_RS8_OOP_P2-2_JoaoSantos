@@ -1,4 +1,5 @@
-﻿using RSGymAdministrative_DAL.Model;
+﻿using RSGymAdministrative_Client.Repository;
+using RSGymAdministrative_DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,11 @@ namespace RSGymAdministrative_Client.Structure
                                             case "1":
 
                                                 #region Create
-                                                Console.Clear(); // Criar
+                                                User newUser = new User();
+                                                newUser = UserRepository.AskNewUser();
+                                                //UserRepository.CreateUser(newUser.PermissionType, newUser.UserName, newUser.Code, newUser.PassWord);
+                                                Utilities.Basics.Message("\nNovo Utilizador Criado.");
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -62,7 +67,8 @@ namespace RSGymAdministrative_Client.Structure
                                             case "3":
 
                                                 #region Read
-                                                Console.Clear(); // Consultar
+                                                UserRepository.ReadUser();
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -102,7 +108,13 @@ namespace RSGymAdministrative_Client.Structure
                                             case "1":
 
                                                 #region Create
-                                                Console.Clear(); // Criar
+                                                Client newClient = new Client();
+                                                ZipCode newZipCode = new ZipCode();
+                                                //create new zip
+                                                newClient = ClientRepository.AskNewUser();
+                                                //ClientRepository.CreateClient();
+                                                Utilities.Basics.Message("\nNovo Cliente Criado.");
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -117,7 +129,8 @@ namespace RSGymAdministrative_Client.Structure
                                             case "3":
 
                                                 #region Read
-                                                Console.Clear(); // Consultar
+                                                ClientRepository.ReadClient();
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -165,7 +178,13 @@ namespace RSGymAdministrative_Client.Structure
                                             case "1":
 
                                                 #region Create
-                                                Console.Clear(); // Criar
+                                                PersonalTrainer newPt = new PersonalTrainer();
+                                                ZipCode newZipCode = new ZipCode();
+                                                //create new zip
+                                                newPt = PersonalTrainerRepository.AskNewPersonalTrainer();
+                                                //PersonalTrainerRepository.CreateClient();
+                                                Utilities.Basics.Message("\nNovo Personal Trainer Criado.");
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -173,7 +192,8 @@ namespace RSGymAdministrative_Client.Structure
                                             case "2":
 
                                                 #region Read
-                                                Console.Clear(); // Listar
+                                                PersonalTrainerRepository.ReadPersonalTrainer();
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;

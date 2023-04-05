@@ -35,7 +35,7 @@ namespace Utilities
 
         public static void Voltar()
         {
-            Console.WriteLine("\n\nPrime qualquer tecla para voltar ao menu inicial.");
+            Console.WriteLine("\n\nPrime qualquer tecla para voltar ao menu anterior.");
             Console.ReadKey();
             Console.Clear();
         }
@@ -50,7 +50,31 @@ namespace Utilities
             }
         }
 
-      
+        public static void ListMenuSimple(Dictionary<string, string> menu)
+        {
+            foreach (KeyValuePair<string, string> item in menu)
+            {
+                Console.WriteLine($"{item.Key}. > {item.Value}");
+            }
+        }
+
+        public static void BlockSeparator(int breaks)
+        {
+            Console.WriteLine(new string('\n', breaks));
+        }
+
+        public static string AskData(string ask)
+        {
+            Console.Write($"{ask}: ");
+            return Console.ReadLine();
+        }
+
+        public static void Message(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+
 
 
 

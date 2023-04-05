@@ -42,5 +42,124 @@ namespace Utilities
                 }
             }
         }
+
+        public static string ValidateName(string name)
+        {
+            if (name.Length <= 100)
+            {
+                return name;
+            }
+            else
+            {
+                string message = "Nome inválido. Máximo 100 caracteres.";
+                Console.WriteLine(message);
+                return message;
+            }
+        }
+
+        public static string ValidateCode(string code)
+        {
+            if (code.Length > 6 || code.Length < 4)
+            {
+                string message = "Código inválido. Minimo 4 e máximo 6 caracteres.";
+                Console.WriteLine(message);
+                return message;
+            }
+            else
+            {
+                return code;
+            }
+        }
+
+        public static string ValidatePass(string pass)
+        {
+            if (pass.Length > 12 || pass.Length < 8)
+            {
+                string message = "Palavra-passe inválida. Minimo 8 e máximo 12 caracteres.";
+                Console.WriteLine(message);
+                return message;
+            }
+            else
+            {
+                return pass;
+            }
+        }
+
+        public static DateTime ValidateBirthDate()
+        {
+            DateTime dateTime;
+            bool valid;
+            do
+            {
+                string birth = Utilities.Basics.AskData("Data de Nascimento (dd/mm/aaaa)");
+                valid = DateTime.TryParse(birth, out dateTime);
+                if (valid == false || dateTime >= DateTime.Today)
+                {
+                    Console.WriteLine("Data de nascimento inválida.");
+                }
+
+            } while (valid == false || dateTime >= DateTime.Today);
+            
+            return dateTime;
+
+        }
+
+        public static string ValidateVatAndPhone(string vatPhone)
+        {
+            //ToDo JPS: Aceita letras
+            if (vatPhone.Length != 9 )
+            {
+                string message = "Valor inválido. 9 Caracteres numéricos obrigatórios.";
+                Console.WriteLine(message);
+                return message;
+            }
+            else
+            {
+                return vatPhone;
+            }
+        }
+
+        public static string ValidateAdress(string adress)
+        {
+            if (adress.Length <= 200)
+            {
+                return adress;
+            }
+            else
+            {
+                string message = "Máximo 200 caracteres.";
+                Console.WriteLine(message);
+                return message;
+            }
+        }
+
+        public static string ValidateObs(string obs)
+        {
+            if (obs.Length <= 255)
+            {
+                return obs;
+            }
+            else
+            {
+                string message = "Máximo 255 caracteres.";
+                Console.WriteLine(message);
+                return message;
+            }
+        }
+
+        public static string ValidatePTCode(string code)
+        {
+            //ToDo JPS: Aceita letras
+            if (code.Length != 4)
+            {
+                string message = "Código inválido. 4 Caracteres obrigatórios.";
+                Console.WriteLine(message);
+                return message;
+            }
+            else
+            {
+                return code;
+            }
+        }
     }
 }

@@ -57,6 +57,7 @@
     <Compile Include="Menu03_UserAdministration.cs" />
     <Compile Include="Menu04_ClientAdministration.cs" />
     <Compile Include="Menu05_PtOrRequestAdministration.cs" />
+    <Compile Include="Menu06_UserPermissionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validations.cs" />
   </ItemGroup>

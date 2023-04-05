@@ -17,7 +17,7 @@ namespace RSGymAdministrative_Client
             //InitializeData.CreateInitialData();
 
             Utilities.Basics.SetUniCodeConsole();
-
+            // ToDo JPS: Try Catch
             ProgramStructure.RunStructure();
             
             Console.ReadKey();

@@ -312,5 +312,38 @@ namespace RSGymAdministrative_Client.Structure
             return validation;
         }
         #endregion
+
+        #region User Type Menu
+        public static string UserTypeMenu()
+        {
+            Dictionary<string, string> menu6 = Utilities.Menu06_UserPermissionType.Menu6Create();
+            string validation;
+
+            do
+            {
+                Utilities.Basics.ListMenuSimple(menu6);
+
+                Console.Write("Opção: ");
+                string readed = Console.ReadLine();
+                validation = Utilities.Validations.MenuOptionReaded(menu6, readed);
+
+                switch (validation)
+                {
+                    //case "1":
+                    //    Console.Clear();
+                    //    break;
+                    //case "2":
+                    //    Console.Clear();
+                    //    break;
+                    //default:
+                    //    Console.WriteLine(validation);
+                    //    Console.ReadKey();
+                    //    Console.Clear();
+                    //    break;
+                }
+            } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
+            return validation;
+        }
+        #endregion
     }
 }
