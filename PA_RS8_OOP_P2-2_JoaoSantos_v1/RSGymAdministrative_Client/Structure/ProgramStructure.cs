@@ -241,7 +241,8 @@ namespace RSGymAdministrative_Client.Structure
                                             case "2":
 
                                                 #region Read
-                                                Console.Clear(); // Listar
+                                                RequestRepository.ReadRequest();
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
