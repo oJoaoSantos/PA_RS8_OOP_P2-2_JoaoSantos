@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Policy;
@@ -35,10 +36,6 @@ namespace RSGymAdministrative_Client.Repository
         #region Read
         public static void ReadUser()
         {
-            Console.Clear();
-            Utilities.Basics.Title01("Consulta de Utilizadores");
-            Utilities.Basics.BlockSeparator(1);
-
             using (var context = new _DatabaseContext())
             {
                 var readUser = context.User.Select(u => u).OrderBy(u => u.Code);
@@ -48,7 +45,24 @@ namespace RSGymAdministrative_Client.Repository
         #endregion
 
         #region Update Password
+        public static void UpdateUserPassword(string pass, int id)
+        {
+            User user = new User()
+            {
+                PassWord = pass,
+            };
 
+            using (var context = new _DatabaseContext())
+            {
+                var userToUpdate = context.User.SingleOrDefault(p => p.UserID == id);
+
+                if (userToUpdate != null)
+                {
+                    userToUpdate.PassWord = pass;
+                    context.SaveChanges();
+                }
+            }
+        }
         #endregion
 
         #region New User
@@ -114,6 +128,48 @@ namespace RSGymAdministrative_Client.Repository
             //Console.WriteLine(user.PassWord);
             //Console.WriteLine(user.PermissionType);
             //Console.ReadKey();
+            
+            return user;
+        }
+        #endregion
+
+        #region New Pass
+        public static User AskNewPass()
+        {
+            User user = new User();
+
+            Console.Clear();
+            Utilities.Basics.Title01("Alteração da Palavra-Pass de um Utilizador");
+            Utilities.Basics.BlockSeparator(1);
+            ReadUser();
+            Utilities.Basics.BlockSeparator(1);
+
+            string valid = "";
+
+            #region ID
+            string id = "";
+            do
+            {
+                id = Utilities.Basics.AskData("ID de Utilizador a Alterar");
+                valid = Utilities.Validations.ValidateID(id);
+            } while (valid == "ID inválido.");
+            user.UserID = int.Parse(valid);
+            #endregion
+
+            #region Pass
+            string pass = "";
+            do
+            {
+                pass = Utilities.Basics.AskData("Palavra-passe");
+                valid = Utilities.Validations.ValidatePass(pass);
+            } while (valid == "Palavra-passe inválida. Minimo 8 e máximo 12 caracteres.");
+            user.PassWord = pass;
+            #endregion
+
+            Console.WriteLine(user.UserID);
+            Console.WriteLine(user.PassWord);
+            Console.ReadKey();
+           
             return user;
         }
         #endregion

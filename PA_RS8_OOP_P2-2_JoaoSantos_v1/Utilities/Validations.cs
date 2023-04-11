@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using RSGymAdministrative_DAL.Model;
@@ -161,5 +162,34 @@ namespace Utilities
                 return code;
             }
         }
+
+        public static string ValidateID(string id)
+        {
+            string message;
+            bool valid = int.TryParse(id, out int idConverted);
+            if (!valid)
+            {
+                message = "ID inválido.";
+                Console.WriteLine(message);
+            }
+            else 
+            {
+                using (var context = new _DatabaseContext())
+                {
+                    var user = context.User.FirstOrDefault(u => u.UserID == idConverted);
+                    if (user != null)
+                    {
+                        message = id;
+                    }
+                    else
+                    {
+                        message = "ID inválido.";
+                        Console.WriteLine(message);
+                    }
+                }
+            }
+            return message;
+        }
+
     }
 }

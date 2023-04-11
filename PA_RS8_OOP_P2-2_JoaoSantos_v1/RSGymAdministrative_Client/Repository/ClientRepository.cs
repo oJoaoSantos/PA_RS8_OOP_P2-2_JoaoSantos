@@ -62,6 +62,7 @@ namespace RSGymAdministrative_Client.Repository
                                                     })
                                                     .OrderBy(c => c.ClientName);
                 // ToDo JPS: Ver o estado.
+                // ToDo JPS: PAssar para method syntax
                 readClient.ToList().ForEach(c => Console.WriteLine($"ID: {c.ClientID} | Estado: {c.ActiveNow} | NIF: {c.ClientVat} | Data de Nascimento: {c.BirthDate.ToShortDateString()} | Nome: {c.ClientName}\t| Telemóvel: {c.ClientPhoneNumber}\t| Email: {c.ClientEmail}\t| Morada: {c.ClientAdress}, {c.Zip} - {c.City}"));
             }
         }

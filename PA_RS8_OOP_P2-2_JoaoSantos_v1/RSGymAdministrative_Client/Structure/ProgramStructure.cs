@@ -47,9 +47,9 @@ namespace RSGymAdministrative_Client.Structure
                                             case "1":
 
                                                 #region Create
-                                                User newUser = new User();
-                                                newUser = UserRepository.AskNewUser();
-                                                //UserRepository.CreateUser(newUser.PermissionType, newUser.UserName, newUser.Code, newUser.PassWord);
+                                                User newUserCreate = new User();
+                                                newUserCreate = UserRepository.AskNewUser();
+                                                //UserRepository.CreateUser(newUserCreate.PermissionType, newUserCreate.UserName, newUserCreate.Code, newUserCreate.PassWord);
                                                 Utilities.Basics.Message("\nNovo Utilizador Criado.");
                                                 Utilities.Basics.Voltar();
                                                 #endregion
@@ -59,7 +59,11 @@ namespace RSGymAdministrative_Client.Structure
                                             case "2":
 
                                                 #region Update
-                                                Console.Clear(); // Alterar
+                                                User newUserUpdate = new User();
+                                                newUserUpdate = UserRepository.AskNewPass();
+                                                //UserRepository.UpdateUserPassword(newUserUpdate.PassWord, newUserUpdate.UserID);
+                                                Utilities.Basics.Message("\nPalavra-Passe Alterada.");
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -67,6 +71,9 @@ namespace RSGymAdministrative_Client.Structure
                                             case "3":
 
                                                 #region Read
+                                                Console.Clear();
+                                                Utilities.Basics.Title01("Consulta de Utilizadores");
+                                                Utilities.Basics.BlockSeparator(1);
                                                 UserRepository.ReadUser();
                                                 Utilities.Basics.Voltar();
                                                 #endregion

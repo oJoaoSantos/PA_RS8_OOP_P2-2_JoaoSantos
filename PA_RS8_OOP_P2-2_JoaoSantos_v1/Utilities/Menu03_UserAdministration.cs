@@ -13,7 +13,7 @@ namespace Utilities
             Dictionary<string, string> menu3 = new Dictionary<string, string>()
             {
                 { "1" , "Criar" },
-                { "2" , "ALterar" },
+                { "2" , "ALterar Palavra-Passe" },
                 { "3" , "Consultar" },
                 { "0" , "Voltar ao Menu Anterior" }
             };
