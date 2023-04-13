@@ -132,7 +132,7 @@ namespace RSGymAdministrative_Client.Structure
                                                 Client newClientUpdate = new Client();
                                                 ClientRepository.FindClient();
                                                 newClientUpdate = ClientRepository.AskNewClient("Modificação de Dados de um Cliente", true);
-                                                //ClientRepository.UpdateClient(newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientVat, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID );
+                                                //ClientRepository.UpdateClientFull(newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientVat, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID );
                                                 Utilities.Basics.Message("\nDados do Cliente Modificados.");
                                                 Utilities.Basics.Voltar();
                                                 #endregion
@@ -151,9 +151,12 @@ namespace RSGymAdministrative_Client.Structure
                                                 break;
 
                                             case "4":
-
                                                 #region Activate/Desactivate
-                                                Console.Clear(); // Ativar/Desativar
+                                                Client newClientUpdateStatus = new Client();
+                                                newClientUpdateStatus = ClientRepository.AskNewClientActiveNow("Ativar ou Desativar um Cliente");
+                                                //ClientRepository.UpdateActiveNow(newClientUpdateStatus.ActiveNow, newClientUpdateStatus.ClientID);
+                                                Utilities.Basics.Message("\nEstado Alterado.");
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;

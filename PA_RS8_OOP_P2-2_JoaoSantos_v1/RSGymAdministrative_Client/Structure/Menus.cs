@@ -378,5 +378,38 @@ namespace RSGymAdministrative_Client.Structure
             return validation;
         }
         #endregion
+
+        #region Client ActivateNow
+        public static string ClientActivateNowMenu()
+        {
+            Dictionary<string, string> menu8 = Utilities.Menu08_ClientActiveNow.Menu8Create();
+            string validation;
+
+            do
+            {
+                Utilities.Basics.ListMenuSimple(menu8);
+
+                Console.Write("Opção: ");
+                string readed = Console.ReadLine();
+                validation = Utilities.Validations.MenuOptionReaded(menu8, readed);
+
+                //switch (validation)
+                //{
+                //    //case "1":
+                //    //    Console.Clear();
+                //    //    break;
+                //    //case "2":
+                //    //    Console.Clear();
+                //    //    break;
+                //    //default:
+                //    //    Console.WriteLine(validation);
+                //    //    Console.ReadKey();
+                //    //    Console.Clear();
+                //    //    break;
+                //}
+            } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
+            return validation;
+        }
+        #endregion
     }
 }

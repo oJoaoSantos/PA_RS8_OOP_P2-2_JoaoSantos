@@ -64,8 +64,8 @@ namespace RSGymAdministrative_Client.Repository
         }
         #endregion
 
-        #region Update
-        public static void UpdateClient(string name, DateTime birth, string vat, string phone, string mail, string adress, string obs, int id)
+        #region Update Full Client
+        public static void UpdateClientFull(string name, DateTime birth, string vat, string phone, string mail, string adress, string obs, int id)
         {
             using (var context = new _DatabaseContext())
             {
@@ -88,8 +88,65 @@ namespace RSGymAdministrative_Client.Repository
         }
         #endregion
 
-        #region ActiveNow Modification
+        #region Update ActiveNow
+        public static void UpdateActiveNow(bool active, int id)
+        {
+            using (var context = new _DatabaseContext())
+            {
+                var clientToUpdate = context.Client.SingleOrDefault(p => p.ClientID == id);
 
+                if (clientToUpdate != null)
+                {
+                    clientToUpdate.ActiveNow = active;
+
+                    context.SaveChanges();
+                }
+            }
+        }
+        #endregion
+
+        #region ActiveNow Modification
+        public static Client AskNewClientActiveNow(string title)
+        {
+            Console.Clear();
+            Utilities.Basics.Title01(title);
+            Utilities.Basics.BlockSeparator(1);
+
+            ReadClient();
+
+            Client client = new Client();
+
+            string id = "";
+            string valid = "";
+
+            do
+            {
+                Utilities.Basics.BlockSeparator(1);
+                id = Utilities.Basics.AskData("ID do Cliente a Alterar");
+                valid = Utilities.Validations.ValidateID(id);
+            } while (valid == "ID inválido.");
+            client.ClientID = int.Parse(id);
+
+            Console.WriteLine("\nComo pretendes alterar?");
+            string ativate = Menus.ClientActivateNowMenu();
+            do
+            {
+                switch (ativate)
+                {
+                    case "1":
+                        client.ActiveNow = true;
+                        break;
+                    case "0":
+                        client.ActiveNow = false;
+                        break;
+                    default:
+                        Console.WriteLine(ativate);
+                        Console.ReadKey();
+                        break;
+                }
+            } while (ativate == "Opção inválida. Tenta de novo, com uma opção da lista.");
+            return client;
+        }
         #endregion
 
         #region New Client
@@ -191,9 +248,10 @@ namespace RSGymAdministrative_Client.Repository
             //Console.WriteLine(client.ClientPhoneNumber);
             //Console.WriteLine(client.ClientEmail);
             //Console.WriteLine(client.ClientObservations);
-            
+
             return client;
         }
+        #endregion
 
         #region FindClient
         public static void FindClient()
@@ -230,8 +288,6 @@ namespace RSGymAdministrative_Client.Repository
                 }
             } while (again == true);
         }
-        #endregion
-
         #endregion
     }
 }
