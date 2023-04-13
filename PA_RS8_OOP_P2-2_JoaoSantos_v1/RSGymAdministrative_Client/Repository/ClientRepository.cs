@@ -38,10 +38,6 @@ namespace RSGymAdministrative_Client.Repository
         #region Read
         public static void ReadClient()
         {
-            Console.Clear();
-            Utilities.Basics.Title01("Consulta de Clientes");
-            Utilities.Basics.BlockSeparator(1);
-
             using (var context = new _DatabaseContext())
             {
                 var readClient = context.ZipCode.Join(context.Client,
@@ -69,7 +65,27 @@ namespace RSGymAdministrative_Client.Repository
         #endregion
 
         #region Update
+        public static void UpdateClient(string name, DateTime birth, string vat, string phone, string mail, string adress, string obs, int id)
+        {
+            using (var context = new _DatabaseContext())
+            {
+                var clientToUpdate = context.Client.SingleOrDefault(p => p.ClientID == id);
 
+                if (clientToUpdate != null)
+                {
+                    //clientToUpdate.ZipCodeID= zip;
+                    clientToUpdate.ClientName = name;
+                    clientToUpdate.BirthDate = birth;
+                    clientToUpdate.ClientVat = vat;
+                    clientToUpdate.ClientPhoneNumber = phone;
+                    clientToUpdate.ClientEmail = mail;
+                    clientToUpdate.ClientAdress = adress;
+                    clientToUpdate.ClientObservations = obs;
+
+                    context.SaveChanges();
+                }
+            }
+        }
         #endregion
 
         #region ActiveNow Modification
@@ -77,24 +93,40 @@ namespace RSGymAdministrative_Client.Repository
         #endregion
 
         #region New Client
-        public static Client AskNewUser()
+        public static Client AskNewClient(string title, bool idBool)
         {
             Client client = new Client();
-
-            Console.Clear();
-            Utilities.Basics.Title01("Criação de um Novo Cliente");
-            Utilities.Basics.BlockSeparator(1);
-
             string valid = "";
 
+            if (idBool == false)
+            {
+                Console.Clear();
+                Utilities.Basics.Title01(title);
+                Utilities.Basics.BlockSeparator(1);
+            }
+
+            #region ID
+            if (idBool == true)
+            {
+                Utilities.Basics.BlockSeparator(1);
+                string id = "";
+                do
+                {
+                    id = Utilities.Basics.AskData("ID do Cliente a Alterar");
+                    valid = Utilities.Validations.ValidateID(id);
+                } while (valid == "ID inválido.");
+                client.ClientID = int.Parse(valid);
+            }
+            #endregion
+
             #region Name
-            string name = "";
+            string clientName = "";
             do
             {
-                name = Utilities.Basics.AskData("Nome");
-                valid = Utilities.Validations.ValidateName(name);
-            } while (valid == "Nome inválido. Máximo 100 caracteres.");
-            client.ClientName = name;
+                clientName = Utilities.Basics.AskData("Nome");
+                valid = Utilities.Validations.ValidateName(clientName);
+            } while (valid == "Nome inválido. Minimo 3 e máximo 100 caracteres.");
+            client.ClientName = clientName;
             #endregion
 
             #region Birth
@@ -162,6 +194,44 @@ namespace RSGymAdministrative_Client.Repository
             
             return client;
         }
+
+        #region FindClient
+        public static void FindClient()
+        {
+            bool again = false;
+            do
+            {
+                Console.Clear();
+                Utilities.Basics.Title01("Modificação de Dados de um Cliente");
+                Utilities.Basics.BlockSeparator(1);
+
+                string name = Utilities.Basics.AskData("Pesquisa o Nome do Cliente: ");
+                using (var context = new _DatabaseContext())
+                {
+                    var findClient = context.Client.Select(c => c).Where(c => c.ClientName.ToLower().Contains(name.ToLower()));
+                    Console.WriteLine("\nClientes Encontrados:");
+                    findClient.ToList().ForEach(c => Console.WriteLine($"ID: {c.ClientID} - Nome: {c.ClientName}"));
+                }
+
+                Console.WriteLine("\nQueres pesquisar novamente?");
+                string find = Menus.ClientFindMenu();
+                switch (find)
+                {
+                    case "1":
+                        again = true;
+                        break;
+                    case "0":
+                        again = false;
+                        break;
+                    default:
+                        Console.WriteLine(find);
+                        Console.ReadKey();
+                        break;
+                }
+            } while (again == true);
+        }
+        #endregion
+
         #endregion
     }
 }

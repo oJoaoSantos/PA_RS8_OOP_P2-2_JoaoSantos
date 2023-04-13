@@ -47,10 +47,10 @@ namespace RSGymAdministrative_Client.Repository
         #region Update Password
         public static void UpdateUserPassword(string pass, int id)
         {
-            User user = new User()
-            {
-                PassWord = pass,
-            };
+            //User user = new User()
+            //{
+            //    PassWord = pass,
+            //};
 
             using (var context = new _DatabaseContext())
             {
@@ -82,7 +82,7 @@ namespace RSGymAdministrative_Client.Repository
             {
                 userName = Utilities.Basics.AskData("Nome");
                 valid = Utilities.Validations.ValidateName(userName);
-            } while (valid == "Nome inválido. Máximo 100 caracteres.");
+            } while (valid == "Nome inválido. Minimo 3 e máximo 100 caracteres.");
             user.UserName = userName;
             #endregion
 
@@ -123,6 +123,7 @@ namespace RSGymAdministrative_Client.Repository
                     break;
             }
             #endregion
+            
             //Console.WriteLine(user.UserName);
             //Console.WriteLine(user.Code);
             //Console.WriteLine(user.PassWord);
@@ -150,7 +151,7 @@ namespace RSGymAdministrative_Client.Repository
             string id = "";
             do
             {
-                id = Utilities.Basics.AskData("ID de Utilizador a Alterar");
+                id = Utilities.Basics.AskData("ID do Utilizador a Alterar");
                 valid = Utilities.Validations.ValidateID(id);
             } while (valid == "ID inválido.");
             user.UserID = int.Parse(valid);
@@ -166,9 +167,9 @@ namespace RSGymAdministrative_Client.Repository
             user.PassWord = pass;
             #endregion
 
-            Console.WriteLine(user.UserID);
-            Console.WriteLine(user.PassWord);
-            Console.ReadKey();
+            //Console.WriteLine(user.UserID);
+            //Console.WriteLine(user.PassWord);
+            //Console.ReadKey();
            
             return user;
         }

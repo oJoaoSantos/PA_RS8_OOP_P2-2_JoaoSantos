@@ -327,20 +327,53 @@ namespace RSGymAdministrative_Client.Structure
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu6, readed);
 
-                switch (validation)
-                {
-                    //case "1":
-                    //    Console.Clear();
-                    //    break;
-                    //case "2":
-                    //    Console.Clear();
-                    //    break;
-                    //default:
-                    //    Console.WriteLine(validation);
-                    //    Console.ReadKey();
-                    //    Console.Clear();
-                    //    break;
-                }
+                //switch (validation)
+                //{
+                //    //case "1":
+                //    //    Console.Clear();
+                //    //    break;
+                //    //case "2":
+                //    //    Console.Clear();
+                //    //    break;
+                //    //default:
+                //    //    Console.WriteLine(validation);
+                //    //    Console.ReadKey();
+                //    //    Console.Clear();
+                //    //    break;
+                //}
+            } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
+            return validation;
+        }
+        #endregion
+
+        #region Client Find Menu
+        public static string ClientFindMenu()
+        {
+            Dictionary<string, string> menu7 = Utilities.Menu07_ClientFind.Menu7Create();
+            string validation;
+
+            do
+            {
+                Utilities.Basics.ListMenuSimple(menu7);
+
+                Console.Write("Opção: ");
+                string readed = Console.ReadLine();
+                validation = Utilities.Validations.MenuOptionReaded(menu7, readed);
+
+                //switch (validation)
+                //{
+                //    //case "1":
+                //    //    Console.Clear();
+                //    //    break;
+                //    //case "2":
+                //    //    Console.Clear();
+                //    //    break;
+                //    //default:
+                //    //    Console.WriteLine(validation);
+                //    //    Console.ReadKey();
+                //    //    Console.Clear();
+                //    //    break;
+                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }

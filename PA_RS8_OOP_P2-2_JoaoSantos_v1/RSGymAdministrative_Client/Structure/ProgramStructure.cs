@@ -118,7 +118,7 @@ namespace RSGymAdministrative_Client.Structure
                                                 Client newClient = new Client();
                                                 ZipCode newZipCode = new ZipCode();
                                                 //create new zip
-                                                newClient = ClientRepository.AskNewUser();
+                                                newClient = ClientRepository.AskNewClient("Criação de um Novo Cliente", false);
                                                 //ClientRepository.CreateClient();
                                                 Utilities.Basics.Message("\nNovo Cliente Criado.");
                                                 Utilities.Basics.Voltar();
@@ -129,13 +129,21 @@ namespace RSGymAdministrative_Client.Structure
                                             case "2":
 
                                                 #region Update
-                                                Console.Clear(); // Alterar
+                                                Client newClientUpdate = new Client();
+                                                ClientRepository.FindClient();
+                                                newClientUpdate = ClientRepository.AskNewClient("Modificação de Dados de um Cliente", true);
+                                                //ClientRepository.UpdateClient(newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientVat, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID );
+                                                Utilities.Basics.Message("\nDados do Cliente Modificados.");
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
                                             case "3":
 
                                                 #region Read
+                                                Console.Clear();
+                                                Utilities.Basics.Title01("Consulta de Clientes");
+                                                Utilities.Basics.BlockSeparator(1);
                                                 ClientRepository.ReadClient();
                                                 Utilities.Basics.Voltar();
                                                 #endregion

@@ -46,15 +46,15 @@ namespace Utilities
 
         public static string ValidateName(string name)
         {
-            if (name.Length <= 100)
+            if (name.Length < 3 || name.Length >= 100 )
             {
-                return name;
+                string message = "Nome inválido. Minimo 3 e máximo 100 caracteres.";
+                Console.WriteLine(message);
+                return message;
             }
             else
             {
-                string message = "Nome inválido. Máximo 100 caracteres.";
-                Console.WriteLine(message);
-                return message;
+                return name;
             }
         }
 
