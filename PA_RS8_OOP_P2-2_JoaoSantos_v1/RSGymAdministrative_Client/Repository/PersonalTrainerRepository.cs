@@ -1,9 +1,6 @@
 ﻿using RSGymAdministrative_DAL.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RSGymAdministrative_Client.Repository
 {
@@ -15,7 +12,7 @@ namespace RSGymAdministrative_Client.Repository
             PersonalTrainer personalTrainer = new PersonalTrainer()
             {
                 ZipCodeID = zipID,
-                PtCode = code,
+                PtCode = code.ToUpper(),
                 PtName = name,
                 PtVat = vat,
                 PtPhoneNumber = phone,
@@ -34,10 +31,6 @@ namespace RSGymAdministrative_Client.Repository
         #region Read
         public static void ReadPersonalTrainer()
         {
-            Console.Clear();
-            Utilities.Basics.Title01("Consulta de Personal Trainers");
-            Utilities.Basics.BlockSeparator(1);
-
             using (var context = new _DatabaseContext())
             {
                 var readClient = context.ZipCode.Join(context.PersonalTrainer,
@@ -56,7 +49,7 @@ namespace RSGymAdministrative_Client.Repository
                                                         z.City
                                                     })
                                                     .OrderBy(p => p.PtName);
-                readClient.ToList().ForEach(p => Console.WriteLine($"ID: {p.PersonalTrainerID} | Código: {p.PtCode} | NIF: {p.PtVat} | Nome: {p.PtName}\t| Telemóvel: {p.PtPhoneNumber}\t| Email: {p.PtEmail}\t| Morada: {p.PtAdress}, {p.Zip} - {p.City}"));
+                readClient.ToList().ForEach(p => Console.WriteLine($" * ID: {p.PersonalTrainerID} * Código: {p.PtCode} * NIF: {p.PtVat} * Nome: {p.PtName} * Telemóvel: {p.PtPhoneNumber} * Email: {p.PtEmail} * Morada: {p.PtAdress}, {p.Zip} - {p.City} *"));
             }
         }
         #endregion
@@ -68,6 +61,9 @@ namespace RSGymAdministrative_Client.Repository
 
             Console.Clear();
             Utilities.Basics.Title01("Criação de um Novo Personal Trainer");
+            Utilities.Basics.BlockSeparator(1);
+            Utilities.Basics.Title02("Lista de PT's");
+            ReadPersonalTrainer();
             Utilities.Basics.BlockSeparator(1);
 
             string valid = "";
@@ -97,7 +93,7 @@ namespace RSGymAdministrative_Client.Repository
                 {
                     code = Utilities.Basics.AskData("Código");
                     valid = Utilities.Validations.ValidatePTCode(code);
-                } while (valid == "Código inválido. 4 Caracteres obrigatórios.");
+                } while (valid == "Código inválido. 4 Caracteres obrigatórios, não pode ser repetido.");
                 pt.PtCode = code;
                 #endregion
 
@@ -141,7 +137,6 @@ namespace RSGymAdministrative_Client.Repository
                 pt.PtEmail = mail;
                 #endregion
             }
-
             return pt;
         }
         #endregion

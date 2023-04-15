@@ -1,13 +1,5 @@
-﻿using RSGymAdministrative_Client.Repository;
-using RSGymAdministrative_DAL.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RSGymAdministrative_Client.Structure
 {
@@ -35,7 +27,8 @@ namespace RSGymAdministrative_Client.Structure
                         break;
                     case "0":
                         Console.Clear();
-                        //ToDo JPS: Mensagem final
+                        Utilities.Basics.FinalMessage("Bom trabalho. Prime qualquer tecla para sair da app.");
+                        Console.ReadKey();
                         break;
                     default:
                         Console.WriteLine(validation);
@@ -60,8 +53,11 @@ namespace RSGymAdministrative_Client.Structure
             string passReaded = Console.ReadLine();
 
             string userType = Utilities.Validations.ValidateLogIn(codeReaded, passReaded);
-
-            //Console.WriteLine($"Entraste como {userType}");
+            if (userType != "Credenciais Inválidas")
+            {
+                Utilities.Basics.Message("Pressiona qualquer tecla para avançar.");
+                Console.ReadLine();
+            }
             return userType;
         }
         #endregion
@@ -82,31 +78,6 @@ namespace RSGymAdministrative_Client.Structure
                 Console.Write("\nOpção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu2Admin, readed);
-
-                //switch (validation)
-                //{
-                //    case "1":
-                //        Console.Clear(); // Colaboradores
-                //        break;
-                //    case "2":
-                //        Console.Clear(); // Clientes
-                //        break;
-                //    case "3":
-                //        Console.Clear(); // Personal Trainers
-                //        break;
-                //    case "4":
-                //        Console.Clear(); // Pedidos
-                //        break;
-                //    case "0":
-                //        // ToDo JPS: Mensagem Final de Final de Sessão, Admin
-                //        Console.Clear(); // Voltar
-                //        break;
-                //    default:
-                //        Console.WriteLine(validation);
-                //        Console.ReadKey();
-                //        Console.Clear();
-                //        break;
-                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }
@@ -126,28 +97,6 @@ namespace RSGymAdministrative_Client.Structure
                 Console.Write("\nOpção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu2Colab, readed);
-
-                //switch (validation)
-                //{
-                //    case "1":
-                //        Console.Clear(); // Clientes
-                //        break;
-                //    case "2":
-                //        Console.Clear(); // Personal Trainers
-                //        break;
-                //    case "3":
-                //        Console.Clear(); // Pedidos
-                //        break;
-                //    case "0":
-                //        // ToDo JPS: Mensagem Final de Final de Sessão, Colab
-                //        Console.Clear(); // Voltar
-                //        break;
-                //    default:
-                //        Console.WriteLine(validation);
-                //        Console.ReadKey();
-                //        Console.Clear();
-                //        break;
-                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }
@@ -169,27 +118,6 @@ namespace RSGymAdministrative_Client.Structure
                 Console.Write("\nOpção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu3, readed);
-
-                //switch (validation)
-                //{
-                //    case "1":
-                //        Console.Clear(); // Criar
-                //        break;
-                //    case "2":
-                //        Console.Clear(); // Alterar
-                //        break;
-                //    case "3":
-                //        Console.Clear(); // Consultar
-                //        break;
-                //    case "0":
-                //        Console.Clear(); // Voltar
-                //        break;
-                //    default:
-                //        Console.WriteLine(validation);
-                //        Console.ReadKey();
-                //        Console.Clear();
-                //        break;
-                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }
@@ -209,30 +137,6 @@ namespace RSGymAdministrative_Client.Structure
                 Console.Write("\nOpção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu4, readed);
-
-                //switch (validation)
-                //{
-                //    case "1":
-                //        Console.Clear(); // Criar
-                //        break;
-                //    case "2":
-                //        Console.Clear(); // Alterar
-                //        break;
-                //    case "3":
-                //        Console.Clear(); // Consultar
-                //        break;
-                //    case "4":
-                //        Console.Clear(); // Ativar/Desativar
-                //        break;
-                //    case "0":
-                //        Console.Clear(); // Voltar
-                //        break;
-                //    default:
-                //        Console.WriteLine(validation);
-                //        Console.ReadKey();
-                //        Console.Clear();
-                //        break;
-                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }
@@ -252,24 +156,6 @@ namespace RSGymAdministrative_Client.Structure
                 Console.Write("\nOpção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu5_1, readed);
-
-                //switch (validation)
-                //{
-                //    case "1":
-                //        Console.Clear(); // Criar
-                //        break;
-                //    case "2":
-                //        Console.Clear(); // Listar
-                //        break;
-                //    case "0":
-                //        Console.Clear(); // Voltar
-                //        break;
-                //    default:
-                //        Console.WriteLine(validation);
-                //        Console.ReadKey();
-                //        Console.Clear();
-                //        break;
-                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }
@@ -289,24 +175,6 @@ namespace RSGymAdministrative_Client.Structure
                 Console.Write("\nOpção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu5_2, readed);
-
-                //switch (validation)
-                //{
-                //    case "1":
-                //        Console.Clear(); // Criar
-                //        break;
-                //    case "2":
-                //        Console.Clear(); // Listar
-                //        break;
-                //    case "0":
-                //        Console.Clear(); // Voltar
-                //        break;
-                //    default:
-                //        Console.WriteLine(validation);
-                //        Console.ReadKey();
-                //        Console.Clear();
-                //        break;
-                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }
@@ -325,21 +193,6 @@ namespace RSGymAdministrative_Client.Structure
                 Console.Write("Opção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu6, readed);
-
-                //switch (validation)
-                //{
-                //    //case "1":
-                //    //    Console.Clear();
-                //    //    break;
-                //    //case "2":
-                //    //    Console.Clear();
-                //    //    break;
-                //    //default:
-                //    //    Console.WriteLine(validation);
-                //    //    Console.ReadKey();
-                //    //    Console.Clear();
-                //    //    break;
-                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }
@@ -358,21 +211,6 @@ namespace RSGymAdministrative_Client.Structure
                 Console.Write("Opção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu7, readed);
-
-                //switch (validation)
-                //{
-                //    //case "1":
-                //    //    Console.Clear();
-                //    //    break;
-                //    //case "2":
-                //    //    Console.Clear();
-                //    //    break;
-                //    //default:
-                //    //    Console.WriteLine(validation);
-                //    //    Console.ReadKey();
-                //    //    Console.Clear();
-                //    //    break;
-                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }
@@ -391,21 +229,6 @@ namespace RSGymAdministrative_Client.Structure
                 Console.Write("Opção: ");
                 string readed = Console.ReadLine();
                 validation = Utilities.Validations.MenuOptionReaded(menu8, readed);
-
-                //switch (validation)
-                //{
-                //    //case "1":
-                //    //    Console.Clear();
-                //    //    break;
-                //    //case "2":
-                //    //    Console.Clear();
-                //    //    break;
-                //    //default:
-                //    //    Console.WriteLine(validation);
-                //    //    Console.ReadKey();
-                //    //    Console.Clear();
-                //    //    break;
-                //}
             } while (validation == "Opção inválida. Tenta de novo, com uma opção da lista.");
             return validation;
         }

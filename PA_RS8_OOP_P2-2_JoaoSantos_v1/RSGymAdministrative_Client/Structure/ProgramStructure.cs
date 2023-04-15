@@ -1,15 +1,9 @@
 ﻿using RSGymAdministrative_Client.Repository;
 using RSGymAdministrative_DAL.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RSGymAdministrative_Client.Structure
 {
-    //ToDo JPS: Criar uma utility com o Wrong Choice
     public class ProgramStructure
     {
         public static void RunStructure()
@@ -50,7 +44,7 @@ namespace RSGymAdministrative_Client.Structure
                                                 #region Create
                                                 User newUserCreate = new User();
                                                 newUserCreate = UserRepository.AskNewUser();
-                                                //UserRepository.CreateUser(newUserCreate.PermissionType, newUserCreate.UserName, newUserCreate.Code, newUserCreate.PassWord);
+                                                UserRepository.CreateUser(newUserCreate.PermissionType, newUserCreate.UserName, newUserCreate.Code, newUserCreate.PassWord);
                                                 Utilities.Basics.Message("\nNovo Utilizador Criado.");
                                                 Utilities.Basics.Voltar();
                                                 #endregion
@@ -62,7 +56,7 @@ namespace RSGymAdministrative_Client.Structure
                                                 #region Update
                                                 User newUserUpdate = new User();
                                                 newUserUpdate = UserRepository.AskNewPass();
-                                                //UserRepository.UpdateUserPassword(newUserUpdate.PassWord, newUserUpdate.UserID);
+                                                UserRepository.UpdateUserPassword(newUserUpdate.PassWord, newUserUpdate.UserID);
                                                 Utilities.Basics.Message("\nPalavra-Passe Alterada.");
                                                 Utilities.Basics.Voltar();
                                                 #endregion
@@ -84,7 +78,7 @@ namespace RSGymAdministrative_Client.Structure
                                             case "0":
 
                                                 #region Back
-                                                Console.Clear(); // Voltar
+                                                Console.Clear();
                                                 #endregion
 
                                                 break;
@@ -92,9 +86,7 @@ namespace RSGymAdministrative_Client.Structure
                                             default:
 
                                                 #region Wrong Choice
-                                                Console.WriteLine(choiceMenu03UserAdministration);
-                                                Console.ReadKey();
-                                                Console.Clear();
+                                                Utilities.Basics.Voltar(choiceMenu03UserAdministration);
                                                 #endregion
 
                                                 break;
@@ -198,7 +190,7 @@ namespace RSGymAdministrative_Client.Structure
                                             case "0":
 
                                                 #region Back
-                                                Console.Clear(); // Voltar
+                                                Console.Clear();
                                                 #endregion
 
                                                 break;
@@ -206,9 +198,7 @@ namespace RSGymAdministrative_Client.Structure
                                             default:
 
                                                 #region Wrong Choice
-                                                Console.WriteLine(choiceMenu04ClientAdministration);
-                                                Console.ReadKey();
-                                                Console.Clear();
+                                                Utilities.Basics.Voltar(choiceMenu04ClientAdministration);
                                                 #endregion
 
                                                 break;
@@ -263,6 +253,9 @@ namespace RSGymAdministrative_Client.Structure
                                             case "2":
 
                                                 #region Read
+                                                Console.Clear();
+                                                Utilities.Basics.Title01("Consulta de Personal Trainers");
+                                                Utilities.Basics.BlockSeparator(1);
                                                 PersonalTrainerRepository.ReadPersonalTrainer();
                                                 Utilities.Basics.Voltar();
                                                 #endregion
@@ -272,7 +265,7 @@ namespace RSGymAdministrative_Client.Structure
                                             case "0":
 
                                                 #region Back
-                                                Console.Clear(); // Voltar
+                                                Console.Clear();
                                                 #endregion
 
                                                 break;
@@ -280,9 +273,7 @@ namespace RSGymAdministrative_Client.Structure
                                             default:
 
                                                 #region WrongChoice
-                                                Console.WriteLine(choiceMenu05_1PtAdministration);
-                                                Console.ReadKey();
-                                                Console.Clear();
+                                                Utilities.Basics.Voltar(choiceMenu05_1PtAdministration);
                                                 #endregion
 
                                                 break;
@@ -304,7 +295,11 @@ namespace RSGymAdministrative_Client.Structure
                                             case "1":
 
                                                 #region Create
-                                                Console.Clear(); // Criar
+                                                Request newRequest = new Request();
+                                                newRequest = RequestRepository.AskNewRequest();
+                                                RequestRepository.CreateRequest(newRequest.ClientID, newRequest.PersonalTrainerID, newRequest.DateAndTime, newRequest.Status, newRequest.RequestObservations);
+                                                Utilities.Basics.Message("\nNovo Pedido Criado.");
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -321,7 +316,7 @@ namespace RSGymAdministrative_Client.Structure
                                             case "0":
 
                                                 #region Back
-                                                Console.Clear(); // Voltar
+                                                Console.Clear();
                                                 #endregion
 
                                                 break;
@@ -329,9 +324,7 @@ namespace RSGymAdministrative_Client.Structure
                                             default:
 
                                                 #region WrongChoice
-                                                Console.WriteLine(choiceMenu05_2RequestAdministration);
-                                                Console.ReadKey();
-                                                Console.Clear();
+                                                Utilities.Basics.Voltar(choiceMenu05_2RequestAdministration);
                                                 #endregion
 
                                                 break;
@@ -344,8 +337,9 @@ namespace RSGymAdministrative_Client.Structure
                                 case "0":
 
                                     #region Back
-                                    // ToDo JPS: Mensagem Final de Final de Sessão, Admin
-                                    Console.Clear(); // Voltar
+                                    Console.Clear();
+                                    Utilities.Basics.FinalMessage("Sessão Terminada. Prime qualquer tecla para voltar ao Menu Inicial.");
+                                    Console.ReadKey();
                                     #endregion
 
                                     break;
@@ -353,9 +347,7 @@ namespace RSGymAdministrative_Client.Structure
                                 default:
 
                                     #region Wrong Choice
-                                    Console.WriteLine(choiceMenu02Admin);
-                                    Console.ReadKey();
-                                    Console.Clear();
+                                    Utilities.Basics.Voltar(choiceMenu02Admin);
                                     #endregion
 
                                     break;
@@ -385,7 +377,32 @@ namespace RSGymAdministrative_Client.Structure
                                             case "1":
 
                                                 #region Create
-                                                Console.Clear(); // Criar
+                                                Client newClient = new Client();
+                                                ZipCode newZipCode = new ZipCode();
+                                                newClient = ClientRepository.AskNewClient("Criação de um Novo Cliente", false);
+                                                if (newClient.ClientVat == "0")
+                                                {
+                                                    Utilities.Basics.Voltar();
+                                                }
+                                                else
+                                                {
+                                                    newZipCode = ZipCodeRepository.AskNewZipCode();
+                                                    if (Utilities.Validations.FindZipCode(newZipCode.Zip) == false)
+                                                    {
+                                                        ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
+                                                        newClient.ZipCodeID = Utilities.Validations.FindMaxIdZipCode();
+                                                        ClientRepository.CreateClient(newClient.ZipCodeID, newClient.ClientName, newClient.BirthDate, newClient.ClientVat, newClient.ClientPhoneNumber, newClient.ClientEmail, newClient.ClientAdress, newClient.ClientObservations);
+                                                        Utilities.Basics.Message("\nNovo Cliente Criado.");
+                                                        Utilities.Basics.Voltar();
+                                                    }
+                                                    else
+                                                    {
+                                                        newClient.ZipCodeID = Utilities.Validations.FindIdZipCode(newZipCode.Zip);
+                                                        ClientRepository.CreateClient(newClient.ZipCodeID, newClient.ClientName, newClient.BirthDate, newClient.ClientVat, newClient.ClientPhoneNumber, newClient.ClientEmail, newClient.ClientAdress, newClient.ClientObservations);
+                                                        Utilities.Basics.Message("\nNovo Cliente Criado.");
+                                                        Utilities.Basics.Voltar();
+                                                    }
+                                                }
                                                 #endregion
 
                                                 break;
@@ -393,14 +410,36 @@ namespace RSGymAdministrative_Client.Structure
                                             case "2":
 
                                                 #region Update
-                                                Console.Clear(); // Alterar
+                                                Client newClientUpdate = new Client();
+                                                ClientRepository.FindClient();
+                                                newClientUpdate = ClientRepository.AskNewClient("Modificação de Dados de um Cliente", true);
+                                                newZipCode = ZipCodeRepository.AskNewZipCode();
+                                                if (Utilities.Validations.FindZipCode(newZipCode.Zip) == false)
+                                                {
+                                                    ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
+                                                    newClientUpdate.ZipCodeID = Utilities.Validations.FindMaxIdZipCode();
+                                                    ClientRepository.UpdateClientFull(newClientUpdate.ZipCodeID, newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID);
+                                                    Utilities.Basics.Message("\nDados do Cliente Modificados.");
+                                                    Utilities.Basics.Voltar();
+                                                }
+                                                else
+                                                {
+                                                    newClientUpdate.ZipCodeID = Utilities.Validations.FindIdZipCode(newZipCode.Zip);
+                                                    ClientRepository.UpdateClientFull(newClientUpdate.ZipCodeID, newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID);
+                                                    Utilities.Basics.Message("\nDados do Cliente Modificados.");
+                                                    Utilities.Basics.Voltar();
+                                                }
                                                 #endregion
 
                                                 break;
                                             case "3":
 
                                                 #region Read
-                                                Console.Clear(); // Consultar
+                                                Console.Clear();
+                                                Utilities.Basics.Title01("Consulta de Clientes");
+                                                Utilities.Basics.BlockSeparator(1);
+                                                ClientRepository.ReadClient();
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -408,7 +447,11 @@ namespace RSGymAdministrative_Client.Structure
                                             case "4":
 
                                                 #region Activate/Desactivate
-                                                Console.Clear(); // Ativar/Desativar
+                                                Client newClientUpdateStatus = new Client();
+                                                newClientUpdateStatus = ClientRepository.AskNewClientActiveNow("Ativar ou Desativar um Cliente");
+                                                ClientRepository.UpdateActiveNow(newClientUpdateStatus.ActiveNow, newClientUpdateStatus.ClientID);
+                                                Utilities.Basics.Message("\nEstado Alterado.");
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -416,7 +459,7 @@ namespace RSGymAdministrative_Client.Structure
                                             case "0":
 
                                                 #region Back
-                                                Console.Clear(); // Voltar
+                                                Console.Clear();
                                                 #endregion
 
                                                 break;
@@ -424,9 +467,7 @@ namespace RSGymAdministrative_Client.Structure
                                             default:
 
                                                 #region Wrong Choice
-                                                Console.WriteLine(choiceMenu04ClientAdministration);
-                                                Console.ReadKey();
-                                                Console.Clear();
+                                                Utilities.Basics.Voltar(choiceMenu04ClientAdministration);
                                                 #endregion
 
                                                 break;
@@ -448,7 +489,32 @@ namespace RSGymAdministrative_Client.Structure
                                             case "1":
 
                                                 #region Create
-                                                Console.Clear(); // Criar
+                                                PersonalTrainer newPt = new PersonalTrainer();
+                                                ZipCode newZipCode = new ZipCode();
+                                                newPt = PersonalTrainerRepository.AskNewPersonalTrainer();
+                                                if (newPt.PtVat == "0")
+                                                {
+                                                    Utilities.Basics.Voltar();
+                                                }
+                                                else
+                                                {
+                                                    newZipCode = ZipCodeRepository.AskNewZipCode();
+                                                    if (Utilities.Validations.FindZipCode(newZipCode.Zip) == false)
+                                                    {
+                                                        ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
+                                                        newPt.ZipCodeID = Utilities.Validations.FindMaxIdZipCode();
+                                                        PersonalTrainerRepository.CreatePersonalTrainer(newPt.ZipCodeID, newPt.PtCode, newPt.PtName, newPt.PtVat, newPt.PtPhoneNumber, newPt.PtEmail, newPt.PtAdress);
+                                                        Utilities.Basics.Message("\nNovo Pt Criado.");
+                                                        Utilities.Basics.Voltar();
+                                                    }
+                                                    else
+                                                    {
+                                                        newPt.ZipCodeID = Utilities.Validations.FindIdZipCode(newZipCode.Zip);
+                                                        PersonalTrainerRepository.CreatePersonalTrainer(newPt.ZipCodeID, newPt.PtCode, newPt.PtName, newPt.PtVat, newPt.PtPhoneNumber, newPt.PtEmail, newPt.PtAdress);
+                                                        Utilities.Basics.Message("\nNovo Pt Criado.");
+                                                        Utilities.Basics.Voltar();
+                                                    }
+                                                }
                                                 #endregion
 
                                                 break;
@@ -456,7 +522,11 @@ namespace RSGymAdministrative_Client.Structure
                                             case "2":
 
                                                 #region Read
-                                                Console.Clear(); // Listar
+                                                Console.Clear();
+                                                Utilities.Basics.Title01("Consulta de Personal Trainers");
+                                                Utilities.Basics.BlockSeparator(1);
+                                                PersonalTrainerRepository.ReadPersonalTrainer();
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -472,9 +542,7 @@ namespace RSGymAdministrative_Client.Structure
                                             default:
 
                                                 #region WrongChoice
-                                                Console.WriteLine(choiceMenu05_1PtAdministration);
-                                                Console.ReadKey();
-                                                Console.Clear();
+                                                Utilities.Basics.Voltar(choiceMenu05_1PtAdministration);
                                                 #endregion
 
                                                 break;
@@ -496,7 +564,11 @@ namespace RSGymAdministrative_Client.Structure
                                             case "1":
 
                                                 #region Create
-                                                Console.Clear(); // Criar
+                                                Request newRequest = new Request();
+                                                newRequest = RequestRepository.AskNewRequest();
+                                                RequestRepository.CreateRequest(newRequest.ClientID, newRequest.PersonalTrainerID, newRequest.DateAndTime, newRequest.Status, newRequest.RequestObservations);
+                                                Utilities.Basics.Message("\nNovo Pedido Criado.");
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -504,7 +576,8 @@ namespace RSGymAdministrative_Client.Structure
                                             case "2":
 
                                                 #region Read
-                                                Console.Clear(); // Listar
+                                                RequestRepository.ReadRequest();
+                                                Utilities.Basics.Voltar();
                                                 #endregion
 
                                                 break;
@@ -512,7 +585,7 @@ namespace RSGymAdministrative_Client.Structure
                                             case "0":
 
                                                 #region Back
-                                                Console.Clear(); // Voltar
+                                                Console.Clear();
                                                 #endregion
 
                                                 break;
@@ -520,9 +593,7 @@ namespace RSGymAdministrative_Client.Structure
                                             default:
 
                                                 #region WrongChoice
-                                                Console.WriteLine(choiceMenu05_2RequestAdministration);
-                                                Console.ReadKey();
-                                                Console.Clear();
+                                                Utilities.Basics.Voltar(choiceMenu05_2RequestAdministration);
                                                 #endregion
 
                                                 break;
@@ -535,8 +606,9 @@ namespace RSGymAdministrative_Client.Structure
                                 case "0":
 
                                     #region Back
-                                    // ToDo JPS: Mensagem Final de Final de Sessão, Admin
-                                    Console.Clear(); // Voltar
+                                    Console.Clear();
+                                    Utilities.Basics.FinalMessage("Sessão Terminada. Prime qualquer tecla para voltar ao Menu Inicial.");
+                                    Console.ReadKey();
                                     #endregion
 
                                     break;
@@ -544,9 +616,7 @@ namespace RSGymAdministrative_Client.Structure
                                 default:
 
                                     #region Wrong Choice
-                                    Console.WriteLine(choiceMenu02Colab);
-                                    Console.ReadKey();
-                                    Console.Clear();
+                                    Utilities.Basics.Voltar(choiceMenu02Colab);
                                     #endregion
 
                                     break;
@@ -558,9 +628,7 @@ namespace RSGymAdministrative_Client.Structure
                     #region Wrong Credentials
                     else
                     {
-                        Console.WriteLine($"{userType}! Pressiona qualquer tecla para voltares ao menu incial.");
-                        Console.ReadKey();
-                        Console.Clear();
+                        Utilities.Basics.Voltar($"\n{userType}!\n\nPrime qualquer tecla para voltares ao menu incial.");
                     }
                     #endregion
                 }

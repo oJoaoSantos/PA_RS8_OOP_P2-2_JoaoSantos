@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RSGymAdministrative_DAL.Model
 {
@@ -32,15 +27,12 @@ namespace RSGymAdministrative_DAL.Model
         public string Code { get; set; }
 
         [Required]
-        [MinLength(8, ErrorMessage = "Número de caracteres mínimo = 8.")]
-        [MaxLength(12, ErrorMessage = "Número de caracteres máximo = 12.")]
+        [RegularExpression(@"^[a-zA-Z1234567890]{8,12}$", ErrorMessage = "Telemóvel Inválido")]
         public string PassWord { get; set; }
 
         [Required]
         public EnumPermissionType PermissionType { get; set; }
         #endregion
 
-        #region Navigation Properties
-        #endregion
     }
 }

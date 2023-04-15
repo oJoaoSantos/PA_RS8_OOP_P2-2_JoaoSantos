@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using RSGymAdministrative_Client.Structure;
 using RSGymAdministrative_DAL.Model;
-
 
 namespace RSGymAdministrative_Client.Repository
 {
@@ -20,7 +13,7 @@ namespace RSGymAdministrative_Client.Repository
             User user = new User()
             {
                 UserName = name,
-                Code = code,
+                Code = code.ToUpper(),
                 PassWord = pass,
                 PermissionType = type
             };
@@ -39,7 +32,7 @@ namespace RSGymAdministrative_Client.Repository
             using (var context = new _DatabaseContext())
             {
                 var readUser = context.User.Select(u => u).OrderBy(u => u.Code);
-                readUser.ToList().ForEach(u => Console.WriteLine($"Código: {u.Code} | ID: {u.UserID} | Perfil: {u.PermissionType} | Nome: {u.UserName}"));
+                readUser.ToList().ForEach(u => Console.WriteLine($" * Código: {u.Code} * ID: {u.UserID} * Perfil: {u.PermissionType} * Nome: {u.UserName} *"));
             }
         }
         #endregion
@@ -47,11 +40,6 @@ namespace RSGymAdministrative_Client.Repository
         #region Update Password
         public static void UpdateUserPassword(string pass, int id)
         {
-            //User user = new User()
-            //{
-            //    PassWord = pass,
-            //};
-
             using (var context = new _DatabaseContext())
             {
                 var userToUpdate = context.User.SingleOrDefault(p => p.UserID == id);
@@ -102,7 +90,7 @@ namespace RSGymAdministrative_Client.Repository
             {
                 pass = Utilities.Basics.AskData("Palavra-passe");
                 valid = Utilities.Validations.ValidatePass(pass);
-            } while (valid == "Palavra-passe inválida. Minimo 8 e máximo 12 caracteres.");
+            } while (valid == "Palavra-passe inválida. Minimo 8 e máximo 12 caracteres alfanuméricos.");
             user.PassWord = pass;
             #endregion
 
@@ -142,6 +130,7 @@ namespace RSGymAdministrative_Client.Repository
             Console.Clear();
             Utilities.Basics.Title01("Alteração da Palavra-Pass de um Utilizador");
             Utilities.Basics.BlockSeparator(1);
+            Utilities.Basics.Title02("Lista de Colaboradores");
             ReadUser();
             Utilities.Basics.BlockSeparator(1);
 
@@ -163,14 +152,10 @@ namespace RSGymAdministrative_Client.Repository
             {
                 pass = Utilities.Basics.AskData("Palavra-passe");
                 valid = Utilities.Validations.ValidatePass(pass);
-            } while (valid == "Palavra-passe inválida. Minimo 8 e máximo 12 caracteres.");
+            } while (valid == "Palavra-passe inválida. Minimo 8 e máximo 12 caracteres alfanuméricos.");
             user.PassWord = pass;
             #endregion
 
-            //Console.WriteLine(user.UserID);
-            //Console.WriteLine(user.PassWord);
-            //Console.ReadKey();
-           
             return user;
         }
         #endregion

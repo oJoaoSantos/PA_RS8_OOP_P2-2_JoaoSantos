@@ -48,7 +48,7 @@ namespace Utilities
 
         public static string ValidateName(string name)
         {
-            bool isValid = Regex.IsMatch(name, @"^[a-zA-Z]{3,100}$");
+            bool isValid = Regex.IsMatch(name, @"^[a-zA-Zçáàãâóòõôéèêíìúù ]{3,100}$");
 
             if (isValid)
             {
@@ -78,15 +78,16 @@ namespace Utilities
 
         public static string ValidatePass(string pass)
         {
-            if (pass.Length > 12 || pass.Length < 8)
+            Regex passRe = new Regex(@"^[a-zA-Z1234567890]{8,12}$");
+            if (passRe.IsMatch(pass))
             {
-                string message = "Palavra-passe inválida. Minimo 8 e máximo 12 caracteres.";
-                Console.WriteLine(message);
-                return message;
+                return pass;
             }
             else
             {
-                return pass;
+                string message = "Palavra-passe inválida. Minimo 8 e máximo 12 caracteres alfanuméricos.";
+                Console.WriteLine(message);
+                return message;
             }
         }
 
@@ -98,15 +99,31 @@ namespace Utilities
             {
                 string birth = Utilities.Basics.AskData("Data de Nascimento (dd/mm/aaaa)");
                 valid = DateTime.TryParse(birth, out dateTime);
-                if (valid == false || dateTime >= DateTime.Today)
+                if (valid == false || dateTime >= DateTime.Today || dateTime.Year <= 1900)
                 {
                     Console.WriteLine("Data de nascimento inválida.");
                 }
 
-            } while (valid == false || dateTime >= DateTime.Today);
+            } while (valid == false || dateTime >= DateTime.Today || dateTime.Year <= 1900);
             
             return dateTime;
+        }
 
+        public static DateTime ValidateDateAndTime()
+        {
+            DateTime dateTime;
+            bool valid;
+            do
+            {
+                string birth = Utilities.Basics.AskData("Data e Hora do Pedido (dd/mm/aaaa hh:mm:ss)");
+                valid = DateTime.TryParse(birth, out dateTime);
+                if (valid == false || dateTime <= DateTime.Today)
+                {
+                    Console.WriteLine("Data e hora inválidas.");
+                }
+
+            } while (valid == false || dateTime <= DateTime.Today);
+            return dateTime;
         }
 
         public static string ValidateVatAndPhone(string vatPhone)
@@ -201,15 +218,19 @@ namespace Utilities
 
         public static string ValidatePTCode(string code)
         {
-            if (code.Length != 4)
+            using (var db = new _DatabaseContext())
             {
-                string message = "Código inválido. 4 Caracteres obrigatórios.";
-                Console.WriteLine(message);
-                return message;
-            }
-            else
-            {
-                return code;
+                var queryPt = db.PersonalTrainer.Select(p => p.PtCode).ToList();
+                if (queryPt.Contains(code.ToUpper()) == true || code.Length != 4)
+                {
+                    string message = "Código inválido. 4 Caracteres obrigatórios, não pode ser repetido.";
+                    Console.WriteLine(message);
+                    return message;
+                }
+                else
+                {
+                    return code;
+                }
             }
         }
 
@@ -228,6 +249,34 @@ namespace Utilities
                 {
                     var user = context.User.FirstOrDefault(u => u.UserID == idConverted);
                     if (user != null)
+                    {
+                        message = id;
+                    }
+                    else
+                    {
+                        message = "ID inválido.";
+                        Console.WriteLine(message);
+                    }
+                }
+            }
+            return message;
+        }
+
+        public static string ValidateIDPt(string id)
+        {
+            string message;
+            bool valid = int.TryParse(id, out int idConverted);
+            if (!valid)
+            {
+                message = "ID inválido.";
+                Console.WriteLine(message);
+            }
+            else
+            {
+                using (var context = new _DatabaseContext())
+                {
+                    var pt = context.PersonalTrainer.FirstOrDefault(p => p.PersonalTrainerID == idConverted);
+                    if (pt != null)
                     {
                         message = id;
                     }
@@ -296,5 +345,20 @@ namespace Utilities
             }
         }
 
+        public static bool FindPtCode(string code)
+        {
+            using (var db = new _DatabaseContext())
+            {
+                var queryPt = db.PersonalTrainer.Select(p => p.PtCode).ToList();
+                if (queryPt.Contains(code) == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

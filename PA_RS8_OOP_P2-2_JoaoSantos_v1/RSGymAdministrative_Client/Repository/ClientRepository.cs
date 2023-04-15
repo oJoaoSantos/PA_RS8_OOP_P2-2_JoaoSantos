@@ -1,11 +1,7 @@
 ﻿using RSGymAdministrative_Client.Structure;
 using RSGymAdministrative_DAL.Model;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RSGymAdministrative_Client.Repository
 {
@@ -58,8 +54,7 @@ namespace RSGymAdministrative_Client.Repository
                                                     })
                                                     .OrderBy(c => c.ClientName)
                                                     .ToList();
-                // ToDo JPS: Converter para method syntax
-                readClient.ToList().ForEach(c => Console.WriteLine($"ID: {c.ClientID} | Estado: {(c.ActiveNow == true ? "Ativo" : "Inativo")} | NIF: {c.ClientVat} | Data de Nascimento: {c.BirthDate.ToShortDateString()} | Nome: {c.ClientName}\t| Telemóvel: {c.ClientPhoneNumber}\t| Email: {c.ClientEmail}\t| Morada: {c.ClientAdress}, {c.Zip} - {c.City}"));                
+                readClient.ToList().ForEach(c => Console.WriteLine($" * ID: {c.ClientID} * Estado: {(c.ActiveNow == true ? "Ativo" : "Inativo")} * NIF: {c.ClientVat} * Data de Nascimento: {c.BirthDate.ToShortDateString()} * Nome: {c.ClientName} * Telemóvel: {c.ClientPhoneNumber} * Email: {c.ClientEmail} * Morada: {c.ClientAdress}, {c.Zip} - {c.City} *"));                
             }
         }
         #endregion
@@ -110,7 +105,7 @@ namespace RSGymAdministrative_Client.Repository
             Console.Clear();
             Utilities.Basics.Title01(title);
             Utilities.Basics.BlockSeparator(1);
-
+            Utilities.Basics.Title02("Lista de Clientes");
             ReadClient();
 
             Client client = new Client();
@@ -254,15 +249,6 @@ namespace RSGymAdministrative_Client.Repository
 
                 client.ActiveNow = true;
             }
-
-            //Console.WriteLine(client.ClientName);
-            //Console.WriteLine(client.BirthDate.ToString());
-            //Console.WriteLine(client.ClientVat);
-            //Console.WriteLine(client.ClientAdress);
-            //Console.WriteLine(client.ClientPhoneNumber);
-            //Console.WriteLine(client.ClientEmail);
-            //Console.WriteLine(client.ClientObservations);
-
             return client;
         }
         #endregion
