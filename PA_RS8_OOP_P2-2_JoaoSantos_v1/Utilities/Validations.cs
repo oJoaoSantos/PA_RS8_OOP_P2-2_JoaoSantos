@@ -173,15 +173,15 @@ namespace Utilities
 
         public static string ValidateAdress(string adress)
         {
-            if (adress.Length > 3 || adress.Length <= 200)
-            {
-                return adress;
-            }
-            else
+            if (adress.Length < 3 || adress.Length >= 200)
             {
                 string message = "Mínimo 3 e máximo 200 caracteres.";
                 Console.WriteLine(message);
                 return message;
+            }
+            else
+            {
+                return adress;
             }
         }
 
