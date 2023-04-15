@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace RSGymAdministrative_Client.Structure
 {
-    // ToDo JPS: Pensar se vale a pena criar uma calsse só de Creates para poder abrir a BD menos tempo ****
     public class Menus
     {
         #region Initial Menu

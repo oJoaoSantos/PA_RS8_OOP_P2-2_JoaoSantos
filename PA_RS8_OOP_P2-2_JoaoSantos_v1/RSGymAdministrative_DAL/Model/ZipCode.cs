@@ -18,7 +18,7 @@ namespace RSGymAdministrative_DAL.Model
         public string Zip { get; set; }
 
         [Required]
-        [MaxLength(50, ErrorMessage = "Número de caracteres máximo = 50.")]
+        [MaxLength(100, ErrorMessage = "Número de caracteres máximo = 100.")]
         public string City { get; set; }
         #endregion
 

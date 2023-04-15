@@ -56,16 +56,16 @@ namespace RSGymAdministrative_Client.Repository
                                                         z.Zip,
                                                         z.City
                                                     })
-                                                    .OrderBy(c => c.ClientName);
-                // ToDo JPS: Ver o estado.
-                // ToDo JPS: PAssar para method syntax
-                readClient.ToList().ForEach(c => Console.WriteLine($"ID: {c.ClientID} | Estado: {c.ActiveNow} | NIF: {c.ClientVat} | Data de Nascimento: {c.BirthDate.ToShortDateString()} | Nome: {c.ClientName}\t| Telemóvel: {c.ClientPhoneNumber}\t| Email: {c.ClientEmail}\t| Morada: {c.ClientAdress}, {c.Zip} - {c.City}"));
+                                                    .OrderBy(c => c.ClientName)
+                                                    .ToList();
+                // ToDo JPS: Converter para method syntax
+                readClient.ToList().ForEach(c => Console.WriteLine($"ID: {c.ClientID} | Estado: {(c.ActiveNow == true ? "Ativo" : "Inativo")} | NIF: {c.ClientVat} | Data de Nascimento: {c.BirthDate.ToShortDateString()} | Nome: {c.ClientName}\t| Telemóvel: {c.ClientPhoneNumber}\t| Email: {c.ClientEmail}\t| Morada: {c.ClientAdress}, {c.Zip} - {c.City}"));                
             }
         }
         #endregion
 
         #region Update Full Client
-        public static void UpdateClientFull(string name, DateTime birth, string vat, string phone, string mail, string adress, string obs, int id)
+        public static void UpdateClientFull(int zip, string name, DateTime birth, string phone, string mail, string adress, string obs, int id)
         {
             using (var context = new _DatabaseContext())
             {
@@ -73,10 +73,9 @@ namespace RSGymAdministrative_Client.Repository
 
                 if (clientToUpdate != null)
                 {
-                    //clientToUpdate.ZipCodeID= zip;
+                    clientToUpdate.ZipCodeID= zip;
                     clientToUpdate.ClientName = name;
                     clientToUpdate.BirthDate = birth;
-                    clientToUpdate.ClientVat = vat;
                     clientToUpdate.ClientPhoneNumber = phone;
                     clientToUpdate.ClientEmail = mail;
                     clientToUpdate.ClientAdress = adress;
@@ -154,12 +153,33 @@ namespace RSGymAdministrative_Client.Repository
         {
             Client client = new Client();
             string valid = "";
+            bool existingVat = false;
 
             if (idBool == false)
             {
                 Console.Clear();
                 Utilities.Basics.Title01(title);
                 Utilities.Basics.BlockSeparator(1);
+
+                #region VAT
+                string vat = "";
+                do
+                {
+                    vat = Utilities.Basics.AskData("NIF");
+                    valid = Utilities.Validations.ValidateVatAndPhone(vat);
+                } while (valid == "Valor inválido. 9 Caracteres numéricos obrigatórios.");
+
+                existingVat = Utilities.Validations.FindVatClient(vat);
+                if (existingVat == true)
+                {
+                    Utilities.Basics.Message("\nUtilizador já existente.");
+                    client.ClientVat = "0";
+                }
+                else
+                {
+                    client.ClientVat = vat;
+                }
+                #endregion
             }
 
             #region ID
@@ -176,70 +196,64 @@ namespace RSGymAdministrative_Client.Repository
             }
             #endregion
 
-            #region Name
-            string clientName = "";
-            do
+            if (existingVat == false)
             {
-                clientName = Utilities.Basics.AskData("Nome");
-                valid = Utilities.Validations.ValidateName(clientName);
-            } while (valid == "Nome inválido. Minimo 3 e máximo 100 caracteres.");
-            client.ClientName = clientName;
-            #endregion
+                #region Name
+                string clientName = "";
+                do
+                {
+                    clientName = Utilities.Basics.AskData("Nome");
+                    valid = Utilities.Validations.ValidateName(clientName);
+                } while (valid == "Dados inválidos. Minimo 3 e máximo 100 caracteres alfabéticos.");
+                client.ClientName = clientName;
+                #endregion
 
-            #region Birth
-            client.BirthDate = Utilities.Validations.ValidateBirthDate();
-            #endregion
+                #region Birth
+                client.BirthDate = Utilities.Validations.ValidateBirthDate();
+                #endregion
 
-            // ToDo JPS: Passar o VAT para primeiro e verificar se existe na bd, se sim não faz o resto
-            #region VAT
-            string vat = "";
-            do
-            {
-                vat = Utilities.Basics.AskData("NIF");
-                valid = Utilities.Validations.ValidateVatAndPhone(vat);
-            } while (valid == "Valor inválido. 9 Caracteres numéricos obrigatórios.");
-            client.ClientVat = vat;
-            #endregion
+                #region Phone
+                string phone = "";
+                do
+                {
+                    phone = Utilities.Basics.AskData("Telemóvel");
+                    valid = Utilities.Validations.ValidateVatAndPhone(phone);
+                } while (valid == "Valor inválido. 9 Caracteres numéricos obrigatórios.");
+                client.ClientPhoneNumber = phone;
+                #endregion
 
-            #region Adress
-            string adress = "";
-            do
-            {
-                adress = Utilities.Basics.AskData("Morada (Rua, Número/Bloco/Lote e Andar)");
-                valid = Utilities.Validations.ValidateAdress(adress);
-            } while (valid == "Máximo 200 caracteres.");
-            client.ClientAdress = adress;
-            #endregion
+                #region Mail
+                string mail = "";
+                do
+                {
+                    mail = Utilities.Basics.AskData("Email");
+                    valid = Utilities.Validations.ValidateMail(mail);
+                } while (valid == "Email inválido.");
+                client.ClientEmail = mail;
+                #endregion
 
-            #region Phone
-            string phone = "";
-            do
-            {
-                phone = Utilities.Basics.AskData("Telemóvel");
-                valid = Utilities.Validations.ValidateVatAndPhone(phone);
-            } while (valid == "Valor inválido. 9 Caracteres numéricos obrigatórios.");
-            client.ClientPhoneNumber = phone;
-            #endregion
+                #region Obs
+                string obs = "";
+                do
+                {
+                    obs = Utilities.Basics.AskData("Observações (opcional, enter para saltar)");
+                    valid = Utilities.Validations.ValidateObs(obs);
+                } while (valid == "Máximo 255 caracteres.");
+                client.ClientObservations = obs;
+                #endregion
 
-            #region Mail
-            //ToDo JPS: Validação mail
-            string mail = Utilities.Basics.AskData("Email");
-            client.ClientEmail = mail;
-            #endregion
+                #region Adress
+                string adress = "";
+                do
+                {
+                    adress = Utilities.Basics.AskData("Morada (Rua, Número/Bloco/Lote e Andar)");
+                    valid = Utilities.Validations.ValidateAdress(adress);
+                } while (valid == "Mínimo 3 e máximo 200 caracteres.");
+                client.ClientAdress = adress;
+                #endregion
 
-            #region Obs
-            string obs = "";
-            do
-            {
-                obs = Utilities.Basics.AskData("Observações (Opcional, enter para saltar).");
-                valid = Utilities.Validations.ValidateObs(obs);
-            } while (valid == "Máximo 255 caracteres.");
-            client.ClientObservations = obs;
-            #endregion
-
-            client.ActiveNow = true;
-
-            //ToDo JPS: No Cliente, ZipCode, procurar o maior e adicionar o novo Zip. 
+                client.ActiveNow = true;
+            }
 
             //Console.WriteLine(client.ClientName);
             //Console.WriteLine(client.BirthDate.ToString());

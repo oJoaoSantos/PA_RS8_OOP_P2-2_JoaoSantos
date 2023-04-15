@@ -82,7 +82,7 @@ namespace RSGymAdministrative_Client.Repository
             {
                 userName = Utilities.Basics.AskData("Nome");
                 valid = Utilities.Validations.ValidateName(userName);
-            } while (valid == "Nome inválido. Minimo 3 e máximo 100 caracteres.");
+            } while (valid == "Dados inválidos. Minimo 3 e máximo 100 caracteres alfabéticos.");
             user.UserName = userName;
             #endregion
 

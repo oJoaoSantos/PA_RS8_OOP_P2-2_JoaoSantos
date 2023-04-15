@@ -71,74 +71,76 @@ namespace RSGymAdministrative_Client.Repository
             Utilities.Basics.BlockSeparator(1);
 
             string valid = "";
-
-            #region Code
-            // ToDo JPS: PT -> Verificar se existe na bd, se sim, não deixa criar.
-            string code = "";
-            do
-            {
-                code = Utilities.Basics.AskData("Código");
-                valid = Utilities.Validations.ValidatePTCode(code);
-            } while (valid == "Nome inválido. Máximo 100 caracteres.");
-            pt.PtCode = code;
-            #endregion
-
-            #region Name
-            string name = "";
-            do
-            {
-                name = Utilities.Basics.AskData("Nome");
-                valid = Utilities.Validations.ValidateName(name);
-            } while (valid == "Nome inválido. Máximo 100 caracteres.");
-            pt.PtName = name;
-            #endregion
-
-            // ToDo JPS: Passar o VAT para primeiro e verificar se existe na bd, se sim não faz o resto
-            #region VAT
             string vat = "";
+
+            #region VAT
             do
             {
                 vat = Utilities.Basics.AskData("NIF");
                 valid = Utilities.Validations.ValidateVatAndPhone(vat);
             } while (valid == "Valor inválido. 9 Caracteres numéricos obrigatórios.");
-            pt.PtVat = vat;
-            #endregion
 
-            #region Adress
-            string adress = "";
-            do
+            bool existingVat = Utilities.Validations.FindVatPt(vat);
+            if (existingVat == true)
             {
-                adress = Utilities.Basics.AskData("Morada (Rua, Número/Bloco/Lote e Andar)");
-                valid = Utilities.Validations.ValidateAdress(adress);
-            } while (valid == "Máximo 200 caracteres.");
-            pt.PtAdress = adress;
+                Utilities.Basics.Message("\nUtilizador já existente.");
+                pt.PtVat = "0";
+            }
             #endregion
-
-            #region Phone
-            string phone = "";
-            do
+            else
             {
-                phone = Utilities.Basics.AskData("Telemóvel");
-                valid = Utilities.Validations.ValidateVatAndPhone(phone);
-            } while (valid == "Valor inválido. 9 Caracteres numéricos obrigatórios.");
-            pt.PtPhoneNumber = phone;
-            #endregion
+                pt.PtVat = vat;
 
-            #region Mail
-            //ToDo JPS: Validação mail
-            string mail = Utilities.Basics.AskData("Email");
-            pt.PtEmail = mail;
-            #endregion
+                #region Code
+                string code = "";
+                do
+                {
+                    code = Utilities.Basics.AskData("Código");
+                    valid = Utilities.Validations.ValidatePTCode(code);
+                } while (valid == "Código inválido. 4 Caracteres obrigatórios.");
+                pt.PtCode = code;
+                #endregion
 
-            //ToDo JPS: No PT, ZipCode, procurar o maior e adicionar o novo Zip. 
+                #region Name
+                string name = "";
+                do
+                {
+                    name = Utilities.Basics.AskData("Nome");
+                    valid = Utilities.Validations.ValidateName(name);
+                } while (valid == "Dados inválidos. Minimo 3 e máximo 100 caracteres alfabéticos.");
+                pt.PtName = name;
+                #endregion
 
-            //Console.WriteLine(client.ClientName);
-            //Console.WriteLine(client.BirthDate.ToString());
-            //Console.WriteLine(client.ClientVat);
-            //Console.WriteLine(client.ClientAdress);
-            //Console.WriteLine(client.ClientPhoneNumber);
-            //Console.WriteLine(client.ClientEmail);
-            //Console.WriteLine(client.ClientObservations);
+                #region Adress
+                string adress = "";
+                do
+                {
+                    adress = Utilities.Basics.AskData("Morada (Rua, Número/Bloco/Lote e Andar)");
+                    valid = Utilities.Validations.ValidateAdress(adress);
+                } while (valid == "Mínimo 3 e máximo 200 caracteres.");
+                pt.PtAdress = adress;
+                #endregion
+
+                #region Phone
+                string phone = "";
+                do
+                {
+                    phone = Utilities.Basics.AskData("Telemóvel");
+                    valid = Utilities.Validations.ValidateVatAndPhone(phone);
+                } while (valid == "Valor inválido. 9 Caracteres numéricos obrigatórios.");
+                pt.PtPhoneNumber = phone;
+                #endregion
+
+                #region Mail
+                string mail = "";
+                do
+                {
+                    mail = Utilities.Basics.AskData("Email");
+                    valid = Utilities.Validations.ValidateMail(mail);
+                } while (valid == "Email inválido.");
+                pt.PtEmail = mail;
+                #endregion
+            }
 
             return pt;
         }

@@ -3,6 +3,7 @@ using RSGymAdministrative_DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -117,11 +118,32 @@ namespace RSGymAdministrative_Client.Structure
                                                 #region Create
                                                 Client newClient = new Client();
                                                 ZipCode newZipCode = new ZipCode();
-                                                //create new zip
                                                 newClient = ClientRepository.AskNewClient("Criação de um Novo Cliente", false);
-                                                //ClientRepository.CreateClient();
-                                                Utilities.Basics.Message("\nNovo Cliente Criado.");
-                                                Utilities.Basics.Voltar();
+                                                if (newClient.ClientVat == "0")
+                                                {
+                                                    Utilities.Basics.Voltar();
+                                                }
+                                                else
+                                                {
+                                                    newZipCode = ZipCodeRepository.AskNewZipCode();
+                                                    if (Utilities.Validations.FindZipCode(newZipCode.Zip) == false)
+                                                    {
+                                                        //ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
+                                                        newClient.ZipCodeID = Utilities.Validations.FindMaxIdZipCode();
+                                                        //ClientRepository.CreateClient();
+                                                        Utilities.Basics.Message("\nNovo Cliente Criado.");
+                                                        Console.WriteLine(newClient.ZipCodeID);
+                                                        Utilities.Basics.Voltar();
+                                                    }
+                                                    else
+                                                    {
+                                                        newClient.ZipCodeID = Utilities.Validations.FindIdZipCode(newZipCode.Zip);
+                                                        //ClientRepository.CreateClient();
+                                                        Utilities.Basics.Message("\nNovo Cliente Criado.");
+                                                        Console.WriteLine(newClient.ZipCodeID);
+                                                        Utilities.Basics.Voltar();
+                                                    }                                                    
+                                                }
                                                 #endregion
 
                                                 break;
@@ -132,9 +154,24 @@ namespace RSGymAdministrative_Client.Structure
                                                 Client newClientUpdate = new Client();
                                                 ClientRepository.FindClient();
                                                 newClientUpdate = ClientRepository.AskNewClient("Modificação de Dados de um Cliente", true);
-                                                //ClientRepository.UpdateClientFull(newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientVat, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID );
-                                                Utilities.Basics.Message("\nDados do Cliente Modificados.");
-                                                Utilities.Basics.Voltar();
+                                                newZipCode = ZipCodeRepository.AskNewZipCode();
+                                                if (Utilities.Validations.FindZipCode(newZipCode.Zip) == false)
+                                                {
+                                                    //ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
+                                                    newClientUpdate.ZipCodeID = Utilities.Validations.FindMaxIdZipCode();
+                                                    //ClientRepository.UpdateClientFull(newClientUpdate.ZipCodeID, newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID );
+                                                    Utilities.Basics.Message("\nDados do Cliente Modificados.");
+                                                    Console.WriteLine(newClientUpdate.ZipCodeID);
+                                                    Utilities.Basics.Voltar();
+                                                }
+                                                else
+                                                {
+                                                    newClientUpdate.ZipCodeID = Utilities.Validations.FindIdZipCode(newZipCode.Zip);
+                                                    //ClientRepository.UpdateClientFull(newClientUpdate.ZipCodeID, newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID );
+                                                    Utilities.Basics.Message("\nDados do Cliente Modificados.");
+                                                    Console.WriteLine(newClientUpdate.ZipCodeID);
+                                                    Utilities.Basics.Voltar();
+                                                }
                                                 #endregion
 
                                                 break;
@@ -198,11 +235,32 @@ namespace RSGymAdministrative_Client.Structure
                                                 #region Create
                                                 PersonalTrainer newPt = new PersonalTrainer();
                                                 ZipCode newZipCode = new ZipCode();
-                                                //create new zip
                                                 newPt = PersonalTrainerRepository.AskNewPersonalTrainer();
-                                                //PersonalTrainerRepository.CreateClient();
-                                                Utilities.Basics.Message("\nNovo Personal Trainer Criado.");
-                                                Utilities.Basics.Voltar();
+                                                if (newPt.PtVat == "0")
+                                                {
+                                                    Utilities.Basics.Voltar();
+                                                }
+                                                else
+                                                {
+                                                    newZipCode = ZipCodeRepository.AskNewZipCode();
+                                                    if (Utilities.Validations.FindZipCode(newZipCode.Zip) == false)
+                                                    {
+                                                        //ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
+                                                        newPt.ZipCodeID = Utilities.Validations.FindMaxIdZipCode();
+                                                        //PersonalTrainerRepository.CreatePersonalTrainer();
+                                                        Utilities.Basics.Message("\nNovo Pt Criado.");
+                                                        Console.WriteLine(newPt.ZipCodeID);
+                                                        Utilities.Basics.Voltar();
+                                                    }
+                                                    else
+                                                    {
+                                                        newPt.ZipCodeID = Utilities.Validations.FindIdZipCode(newZipCode.Zip);
+                                                        //PersonalTrainerRepository.CreatePersonalTrainer();
+                                                        Utilities.Basics.Message("\nNovo Pt Criado.");
+                                                        Console.WriteLine(newPt.ZipCodeID);
+                                                        Utilities.Basics.Voltar();
+                                                    }
+                                                }
                                                 #endregion
 
                                                 break;
