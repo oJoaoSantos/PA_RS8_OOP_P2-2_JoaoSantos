@@ -128,16 +128,16 @@ namespace RSGymAdministrative_Client.Structure
                                                     newZipCode = ZipCodeRepository.AskNewZipCode();
                                                     if (Utilities.Validations.FindZipCode(newZipCode.Zip) == false)
                                                     {
-                                                        //ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
+                                                        ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
                                                         newClient.ZipCodeID = Utilities.Validations.FindMaxIdZipCode();
-                                                        //ClientRepository.CreateClient();
+                                                        ClientRepository.CreateClient(newClient.ZipCodeID, newClient.ClientName, newClient.BirthDate, newClient.ClientVat, newClient.ClientPhoneNumber, newClient.ClientEmail, newClient.ClientAdress, newClient.ClientObservations);
                                                         Utilities.Basics.Message("\nNovo Cliente Criado.");
                                                         Utilities.Basics.Voltar();
                                                     }
                                                     else
                                                     {
                                                         newClient.ZipCodeID = Utilities.Validations.FindIdZipCode(newZipCode.Zip);
-                                                        //ClientRepository.CreateClient();
+                                                        ClientRepository.CreateClient(newClient.ZipCodeID, newClient.ClientName, newClient.BirthDate, newClient.ClientVat, newClient.ClientPhoneNumber, newClient.ClientEmail, newClient.ClientAdress, newClient.ClientObservations);
                                                         Utilities.Basics.Message("\nNovo Cliente Criado.");
                                                         Utilities.Basics.Voltar();
                                                     }                                                    
@@ -155,16 +155,16 @@ namespace RSGymAdministrative_Client.Structure
                                                 newZipCode = ZipCodeRepository.AskNewZipCode();
                                                 if (Utilities.Validations.FindZipCode(newZipCode.Zip) == false)
                                                 {
-                                                    //ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
+                                                    ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
                                                     newClientUpdate.ZipCodeID = Utilities.Validations.FindMaxIdZipCode();
-                                                    //ClientRepository.UpdateClientFull(newClientUpdate.ZipCodeID, newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID );
+                                                    ClientRepository.UpdateClientFull(newClientUpdate.ZipCodeID, newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID );
                                                     Utilities.Basics.Message("\nDados do Cliente Modificados.");
                                                     Utilities.Basics.Voltar();
                                                 }
                                                 else
                                                 {
                                                     newClientUpdate.ZipCodeID = Utilities.Validations.FindIdZipCode(newZipCode.Zip);
-                                                    //ClientRepository.UpdateClientFull(newClientUpdate.ZipCodeID, newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID );
+                                                    ClientRepository.UpdateClientFull(newClientUpdate.ZipCodeID, newClientUpdate.ClientName, newClientUpdate.BirthDate, newClientUpdate.ClientPhoneNumber, newClientUpdate.ClientEmail, newClientUpdate.ClientAdress, newClientUpdate.ClientObservations, newClientUpdate.ClientID );
                                                     Utilities.Basics.Message("\nDados do Cliente Modificados.");
                                                     Utilities.Basics.Voltar();
                                                 }
@@ -184,10 +184,11 @@ namespace RSGymAdministrative_Client.Structure
                                                 break;
 
                                             case "4":
+
                                                 #region Activate/Desactivate
                                                 Client newClientUpdateStatus = new Client();
                                                 newClientUpdateStatus = ClientRepository.AskNewClientActiveNow("Ativar ou Desativar um Cliente");
-                                                //ClientRepository.UpdateActiveNow(newClientUpdateStatus.ActiveNow, newClientUpdateStatus.ClientID);
+                                                ClientRepository.UpdateActiveNow(newClientUpdateStatus.ActiveNow, newClientUpdateStatus.ClientID);
                                                 Utilities.Basics.Message("\nEstado Alterado.");
                                                 Utilities.Basics.Voltar();
                                                 #endregion
@@ -241,16 +242,16 @@ namespace RSGymAdministrative_Client.Structure
                                                     newZipCode = ZipCodeRepository.AskNewZipCode();
                                                     if (Utilities.Validations.FindZipCode(newZipCode.Zip) == false)
                                                     {
-                                                        //ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
+                                                        ZipCodeRepository.CreateZipCode(newZipCode.Zip, newZipCode.City);
                                                         newPt.ZipCodeID = Utilities.Validations.FindMaxIdZipCode();
-                                                        //PersonalTrainerRepository.CreatePersonalTrainer();
+                                                        PersonalTrainerRepository.CreatePersonalTrainer(newPt.ZipCodeID, newPt.PtCode, newPt.PtName, newPt.PtVat, newPt.PtPhoneNumber, newPt.PtEmail, newPt.PtAdress);
                                                         Utilities.Basics.Message("\nNovo Pt Criado.");
                                                         Utilities.Basics.Voltar();
                                                     }
                                                     else
                                                     {
                                                         newPt.ZipCodeID = Utilities.Validations.FindIdZipCode(newZipCode.Zip);
-                                                        //PersonalTrainerRepository.CreatePersonalTrainer();
+                                                        PersonalTrainerRepository.CreatePersonalTrainer(newPt.ZipCodeID, newPt.PtCode, newPt.PtName, newPt.PtVat, newPt.PtPhoneNumber, newPt.PtEmail, newPt.PtAdress);
                                                         Utilities.Basics.Message("\nNovo Pt Criado.");
                                                         Utilities.Basics.Voltar();
                                                     }

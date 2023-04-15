@@ -26,15 +26,15 @@ namespace RSGymAdministrative_DAL.Model
         public string PtName { get; set; }
 
         [Required]
-        [MaxLength(9, ErrorMessage = "NIF inválido.")]
+        [RegularExpression(@"^\d{9}$", ErrorMessage = "NIF Inválido")]
         public string PtVat { get; set; }
 
         [Required]
-        [MaxLength(9, ErrorMessage = "Contacto inválido.")]
+        [RegularExpression(@"^\d{9}$", ErrorMessage = "Telemóvel Inválido")]
         public string PtPhoneNumber { get; set; }
 
         [Required]
-        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")]
+        [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email Inválido")]
         public string PtEmail { get; set; }
 
         [Required]
